@@ -1,0 +1,129 @@
+CCS PCM C Compiler, Version 5.078, 43599               06-Nov-18 07:16
+
+               Filename:   E:\bai tap vdk\4_Button\bài1\main1.lst
+
+               ROM used:   66 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #define S1     PIN_D0 
+.................... #define LED1   PIN_D3 
+.................... #include <main1.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+....................  
+....................  
+....................  
+.................... CHAR S1_state=0; 
+....................  
+.................... void main() 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  CLRF   20
+0008:  BSF    03.5
+0009:  BSF    03.6
+000A:  MOVF   09,W
+000B:  ANDLW  C0
+000C:  MOVWF  09
+000D:  BCF    03.6
+000E:  BCF    1F.4
+000F:  BCF    1F.5
+0010:  MOVLW  00
+0011:  BSF    03.6
+0012:  MOVWF  08
+0013:  BCF    03.5
+0014:  CLRF   07
+0015:  CLRF   08
+0016:  CLRF   09
+0017:  BCF    03.7
+.................... { 
+....................    set_tris_d(0b111110111); 
+0018:  MOVLW  F7
+0019:  BSF    03.5
+001A:  BCF    03.6
+001B:  MOVWF  08
+....................    output_bit(LED1,0); 
+001C:  BCF    03.5
+001D:  BCF    08.3
+001E:  BSF    03.5
+001F:  BCF    08.3
+....................    while(TRUE) 
+....................    { 
+....................       if(input(S1)==1)  
+0020:  BSF    08.0
+0021:  BCF    03.5
+0022:  BTFSS  08.0
+0023:  GOTO   02A
+....................          { 
+....................             S1_state=1; 
+0024:  MOVLW  01
+0025:  MOVWF  20
+....................             output_bit(LED1,1); 
+0026:  BSF    08.3
+0027:  BSF    03.5
+0028:  BCF    08.3
+0029:  BCF    03.5
+....................          } 
+....................       if((input(S1)==0)&(S1_state==1)) 
+002A:  BSF    03.5
+002B:  BSF    08.0
+002C:  MOVLW  00
+002D:  BCF    03.5
+002E:  BTFSS  08.0
+002F:  MOVLW  01
+0030:  MOVWF  22
+0031:  DECFSZ 20,W
+0032:  GOTO   034
+0033:  GOTO   036
+0034:  MOVLW  00
+0035:  GOTO   037
+0036:  MOVLW  01
+0037:  ANDWF  22,W
+0038:  BTFSC  03.2
+0039:  GOTO   03F
+....................          { 
+....................             output_bit(LED1,0); 
+003A:  BCF    08.3
+003B:  BSF    03.5
+003C:  BCF    08.3
+....................             S1_state=0; 
+003D:  BCF    03.5
+003E:  CLRF   20
+....................              
+....................          } 
+003F:  BSF    03.5
+0040:  GOTO   020
+....................  
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+0041:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

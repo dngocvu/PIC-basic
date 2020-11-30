@@ -1,0 +1,6 @@
+Compiling E:\bai tap vdk\4_Button\bài6\main6 on 07-Nov-18 at 19:09
+>>> Warning 202 "main6.c" Line 8(8,18): Variable never used:   delaycntON
+>>> Warning 202 "main6.c" Line 9(8,19): Variable never used:   delaycntOFF
+      Memory usage:   ROM=2%      RAM=4% - 4%
+      0 Errors,  2 Warnings.
+Build Successful.

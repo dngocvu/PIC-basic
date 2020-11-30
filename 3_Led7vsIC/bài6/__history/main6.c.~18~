@@ -1,0 +1,265 @@
+#include <main6.h>
+
+//#fuses nowdt,put,hs,noprotect,nolvp
+//#use delay(clock=20m)
+unsigned int8 i=0;
+
+void data(unsigned char d)
+{
+ if(d==1) {output_high(pin_c1);}
+ if(d==0) {output_low(pin_c1);}
+}
+void clk()
+{
+ output_high(pin_c0);
+ output_low(pin_c0);
+}
+void latch()
+{
+ output_high(pin_c2);
+ output_low(pin_c2);
+ delay_ms(50);
+}
+void main()
+{
+   while(TRUE)
+   {
+   //ZERO:0b11000000
+   data(1);
+   clk();
+   for(i=0;i<6;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   data(1);
+   clk();
+   for(i=0;i<6;i++){
+   data(0);
+   clk();
+   }
+   latch();
+   //ONE:0b111111001
+   for(i=0;i<4;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<4;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   latch();
+   
+   //TWO:0b10100100
+   data(0);
+   clk();
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<3;i++){
+   data(0);
+   clk();
+   }
+   data(0);
+   clk();
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   latch();
+   
+   //THREE:0b10110000
+   data(0);
+   clk();
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<5;i++){
+   data(0);
+   clk();
+   }
+   data(0);
+   clk();
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<4;i++){
+   data(0);
+   clk();
+   }
+   latch();
+   
+   //FOUR:0b10011001
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   latch();
+   
+   //FIVE:0b10010010
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   data(0);
+   clk();
+   latch();
+   
+   //SIX:0b10000010
+   for(i=0;i<5;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<5;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   data(0);
+   clk();
+   latch();
+   
+   //SEVEN:0b11111000
+   for(i=0;i<4;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<4;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<4;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<3;i++){
+   data(0);
+   clk();
+   }
+   latch();
+   
+   //EITGH:0b10000000
+   for(i=0;i<8;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<7;i++){
+   data(0);
+   clk();
+   }
+   latch();
+   
+   //NINE:0b0010000
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<5;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<4;i++){
+   data(0);
+   clk();
+   }
+   latch();
+      //TODO: User Code
+  }
+}
+
+

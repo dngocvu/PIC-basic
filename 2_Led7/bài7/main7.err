@@ -1,0 +1,5 @@
+Compiling E:\bai tap vdk\led7\bài7\main7 on 04-Nov-18 at 16:29
+>>> Warning 202 "main7.c" Line 5(14,20): Variable never used:   ma_dem
+      Memory usage:   ROM=2%      RAM=2% - 3%
+      0 Errors,  1 Warnings.
+Build Successful.

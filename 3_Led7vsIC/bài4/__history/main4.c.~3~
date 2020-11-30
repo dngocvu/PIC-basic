@@ -1,0 +1,23 @@
+#include <main4.h>
+
+signed int i;
+  const unsigned int8
+  ma7doan[10]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09};
+void main()
+{
+    set_tris_c(0x00);
+    set_tris_d(0x00);
+   while(TRUE)
+   {
+   for(i=0;i<100;i++){
+    output_c(ma7doan[i/10]);
+    output_d(ma7doan[i%10]);
+    delay_ms(100);
+    }
+
+
+
+      //TODO: User Code
+   }
+
+}

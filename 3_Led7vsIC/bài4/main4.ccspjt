@@ -1,0 +1,57 @@
+[PROJECT]
+Target=main4.hex
+Processor_Text=PIC16F887
+CCSVerions=5.078
+Compiler=PCM
+CCSVersion=5.078
+[Target Data]
+FileList=main4.c
+[Directories]
+Include=
+[E:\bai tap vdk\3_Led7vsIC\bài4\main4]
+Type=4
+[mru-list]
+1=main4.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=05-11-2018
+D1_L=10
+D1_L1=[68339]Project Opened.
+D1_L2=[68518]Started Editing.
+D1_L3=[69462]Stopped Editing.
+TotalEdit=36
+TotalDebug=0
+D1_E=35
+D1_D=0
+D1_L4=[69462]Project Closed.
+D1_L5=[69558]Project Opened.
+D1_L6=[69577]Started Editing.
+D1_L7=[70704]Stopped Editing.
+D1_L8=[70704]Project Closed.
+D1_L9=[79423]Project Opened.
+D1_L10=[79491]Project Closed.
+D2=08-11-2018
+D2_L=4
+D2_L1=[62908]Project Opened.
+D2_L2=[62918]Started Editing.
+D2_L3=[62929]Stopped Editing.
+D2_E=1
+D2_D=0
+D2_L4=[62929]Project Closed.
+
+[Opened Files]
+1=main4.c
+t1=1
+Count=1
+[main4.c]
+Type=4
+
+[defines]
+buildcount=27
+[Units]
+Count=1
+1=main4 (main)

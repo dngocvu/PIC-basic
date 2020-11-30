@@ -1,0 +1,454 @@
+CCS PCM C Compiler, Version 5.078, 43599               07-Nov-18 18:50
+
+               Filename:   E:\bai tap vdk\4_Button\bài8\main8.lst
+
+               ROM used:   341 words (4%)
+                           Largest free fragment is 2048
+               RAM used:   13 (4%) at main() level
+                           13 (4%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #define S1    PIN_D0 
+.................... #define LED1  PIN_D3 
+.................... #define LED2  PIN_D4 
+.................... #define LED3  PIN_D5 
+....................  
+.................... #include <main8.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+0004:  MOVLW  26
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+....................  
+....................  
+.................... char phase=0; 
+.................... char output_state=0; 
+.................... int16  delaycntON=0; 
+.................... int16  delaycntOFF=0; 
+....................  
+.................... void main() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  CLRF   20
+001C:  CLRF   21
+001D:  CLRF   23
+001E:  CLRF   22
+001F:  CLRF   25
+0020:  CLRF   24
+0021:  BSF    03.5
+0022:  BSF    03.6
+0023:  MOVF   09,W
+0024:  ANDLW  C0
+0025:  MOVWF  09
+0026:  BCF    03.6
+0027:  BCF    1F.4
+0028:  BCF    1F.5
+0029:  MOVLW  00
+002A:  BSF    03.6
+002B:  MOVWF  08
+002C:  BCF    03.5
+002D:  CLRF   07
+002E:  CLRF   08
+002F:  CLRF   09
+0030:  BCF    03.7
+....................  
+.................... { 
+....................    set_tris_d(0b11000111); 
+0031:  MOVLW  C7
+0032:  BSF    03.5
+0033:  BCF    03.6
+0034:  MOVWF  08
+....................    output_bit(LED1,0); 
+0035:  BCF    03.5
+0036:  BCF    08.3
+0037:  BSF    03.5
+0038:  BCF    08.3
+....................    while(TRUE)    
+....................    { 
+....................       // input + process 
+....................       if ((phase==0)&(input(S1)==1)) phase=1; 
+0039:  BCF    03.5
+003A:  MOVF   20,F
+003B:  BTFSC  03.2
+003C:  GOTO   03F
+003D:  MOVLW  00
+003E:  GOTO   040
+003F:  MOVLW  01
+0040:  MOVWF  26
+0041:  BSF    03.5
+0042:  BSF    08.0
+0043:  MOVLW  00
+0044:  BCF    03.5
+0045:  BTFSC  08.0
+0046:  MOVLW  01
+0047:  ANDWF  26,W
+0048:  BTFSC  03.2
+0049:  GOTO   04C
+004A:  MOVLW  01
+004B:  MOVWF  20
+....................       if ((phase==1)&(input(S1)==0)) phase=2; 
+004C:  DECFSZ 20,W
+004D:  GOTO   04F
+004E:  GOTO   051
+004F:  MOVLW  00
+0050:  GOTO   052
+0051:  MOVLW  01
+0052:  MOVWF  26
+0053:  BSF    03.5
+0054:  BSF    08.0
+0055:  MOVLW  00
+0056:  BCF    03.5
+0057:  BTFSS  08.0
+0058:  MOVLW  01
+0059:  ANDWF  26,W
+005A:  BTFSC  03.2
+005B:  GOTO   05E
+005C:  MOVLW  02
+005D:  MOVWF  20
+....................       if ((phase==2)&(input(S1)==1)) phase=3; 
+005E:  MOVF   20,W
+005F:  SUBLW  02
+0060:  BTFSC  03.2
+0061:  GOTO   064
+0062:  MOVLW  00
+0063:  GOTO   065
+0064:  MOVLW  01
+0065:  MOVWF  26
+0066:  BSF    03.5
+0067:  BSF    08.0
+0068:  MOVLW  00
+0069:  BCF    03.5
+006A:  BTFSC  08.0
+006B:  MOVLW  01
+006C:  ANDWF  26,W
+006D:  BTFSC  03.2
+006E:  GOTO   071
+006F:  MOVLW  03
+0070:  MOVWF  20
+....................       if ((phase==3)&(input(S1)==0)) phase=4; 
+0071:  MOVF   20,W
+0072:  SUBLW  03
+0073:  BTFSC  03.2
+0074:  GOTO   077
+0075:  MOVLW  00
+0076:  GOTO   078
+0077:  MOVLW  01
+0078:  MOVWF  26
+0079:  BSF    03.5
+007A:  BSF    08.0
+007B:  MOVLW  00
+007C:  BCF    03.5
+007D:  BTFSS  08.0
+007E:  MOVLW  01
+007F:  ANDWF  26,W
+0080:  BTFSC  03.2
+0081:  GOTO   084
+0082:  MOVLW  04
+0083:  MOVWF  20
+....................       if ((phase==4)&(input(S1)==1)) phase=5; 
+0084:  MOVF   20,W
+0085:  SUBLW  04
+0086:  BTFSC  03.2
+0087:  GOTO   08A
+0088:  MOVLW  00
+0089:  GOTO   08B
+008A:  MOVLW  01
+008B:  MOVWF  26
+008C:  BSF    03.5
+008D:  BSF    08.0
+008E:  MOVLW  00
+008F:  BCF    03.5
+0090:  BTFSC  08.0
+0091:  MOVLW  01
+0092:  ANDWF  26,W
+0093:  BTFSC  03.2
+0094:  GOTO   097
+0095:  MOVLW  05
+0096:  MOVWF  20
+....................       if ((phase==5)&(input(S1)==0)) phase=6; 
+0097:  MOVF   20,W
+0098:  SUBLW  05
+0099:  BTFSC  03.2
+009A:  GOTO   09D
+009B:  MOVLW  00
+009C:  GOTO   09E
+009D:  MOVLW  01
+009E:  MOVWF  26
+009F:  BSF    03.5
+00A0:  BSF    08.0
+00A1:  MOVLW  00
+00A2:  BCF    03.5
+00A3:  BTFSS  08.0
+00A4:  MOVLW  01
+00A5:  ANDWF  26,W
+00A6:  BTFSC  03.2
+00A7:  GOTO   0AA
+00A8:  MOVLW  06
+00A9:  MOVWF  20
+....................       if ((phase==6)&(input(S1)==1)) phase=7; 
+00AA:  MOVF   20,W
+00AB:  SUBLW  06
+00AC:  BTFSC  03.2
+00AD:  GOTO   0B0
+00AE:  MOVLW  00
+00AF:  GOTO   0B1
+00B0:  MOVLW  01
+00B1:  MOVWF  26
+00B2:  BSF    03.5
+00B3:  BSF    08.0
+00B4:  MOVLW  00
+00B5:  BCF    03.5
+00B6:  BTFSC  08.0
+00B7:  MOVLW  01
+00B8:  ANDWF  26,W
+00B9:  BTFSC  03.2
+00BA:  GOTO   0BD
+00BB:  MOVLW  07
+00BC:  MOVWF  20
+....................       if ((phase==7)&(input(S1)==0)) phase=0; 
+00BD:  MOVF   20,W
+00BE:  SUBLW  07
+00BF:  BTFSC  03.2
+00C0:  GOTO   0C3
+00C1:  MOVLW  00
+00C2:  GOTO   0C4
+00C3:  MOVLW  01
+00C4:  MOVWF  26
+00C5:  BSF    03.5
+00C6:  BSF    08.0
+00C7:  MOVLW  00
+00C8:  BCF    03.5
+00C9:  BTFSS  08.0
+00CA:  MOVLW  01
+00CB:  ANDWF  26,W
+00CC:  BTFSS  03.2
+00CD:  CLRF   20
+....................        
+....................       // Control 
+....................       if (phase==0) output_state=0; 
+00CE:  MOVF   20,F
+00CF:  BTFSC  03.2
+00D0:  CLRF   21
+....................       if (phase==1) output_state=0; 
+00D1:  DECFSZ 20,W
+00D2:  GOTO   0D4
+00D3:  CLRF   21
+....................       if (phase==2) output_state=1; 
+00D4:  MOVF   20,W
+00D5:  SUBLW  02
+00D6:  BTFSS  03.2
+00D7:  GOTO   0DA
+00D8:  MOVLW  01
+00D9:  MOVWF  21
+....................       if (phase==3) output_state=1; 
+00DA:  MOVF   20,W
+00DB:  SUBLW  03
+00DC:  BTFSS  03.2
+00DD:  GOTO   0E0
+00DE:  MOVLW  01
+00DF:  MOVWF  21
+....................       if (phase==4) output_state=2; 
+00E0:  MOVF   20,W
+00E1:  SUBLW  04
+00E2:  BTFSS  03.2
+00E3:  GOTO   0E6
+00E4:  MOVLW  02
+00E5:  MOVWF  21
+....................       if (phase==5) output_state=2; 
+00E6:  MOVF   20,W
+00E7:  SUBLW  05
+00E8:  BTFSS  03.2
+00E9:  GOTO   0EC
+00EA:  MOVLW  02
+00EB:  MOVWF  21
+....................       if (phase==6) output_state=3; 
+00EC:  MOVF   20,W
+00ED:  SUBLW  06
+00EE:  BTFSS  03.2
+00EF:  GOTO   0F2
+00F0:  MOVLW  03
+00F1:  MOVWF  21
+....................       if (phase==7) output_state=3; 
+00F2:  MOVF   20,W
+00F3:  SUBLW  07
+00F4:  BTFSS  03.2
+00F5:  GOTO   0F8
+00F6:  MOVLW  03
+00F7:  MOVWF  21
+....................      
+....................    // Output 
+....................    if (output_state==0)  
+00F8:  MOVF   21,F
+00F9:  BTFSS  03.2
+00FA:  GOTO   107
+....................       { 
+....................          output_bit(LED1,0); 
+00FB:  BCF    08.3
+00FC:  BSF    03.5
+00FD:  BCF    08.3
+....................          output_bit(LED2,0); 
+00FE:  BCF    03.5
+00FF:  BCF    08.4
+0100:  BSF    03.5
+0101:  BCF    08.4
+....................          output_bit(LED3,0); 
+0102:  BCF    03.5
+0103:  BCF    08.5
+0104:  BSF    03.5
+0105:  BCF    08.5
+0106:  BCF    03.5
+....................       } 
+....................    if (output_state==1)  
+0107:  DECFSZ 21,W
+0108:  GOTO   11F
+....................       { 
+....................          output_bit(LED1,1); 
+0109:  BSF    08.3
+010A:  BSF    03.5
+010B:  BCF    08.3
+....................          delay_ms(10); 
+010C:  MOVLW  0A
+010D:  BCF    03.5
+010E:  MOVWF  26
+010F:  CALL   004
+....................          output_bit(LED1,0); 
+0110:  BCF    08.3
+0111:  BSF    03.5
+0112:  BCF    08.3
+....................          delay_ms(10); 
+0113:  MOVLW  0A
+0114:  BCF    03.5
+0115:  MOVWF  26
+0116:  CALL   004
+....................          output_bit(LED2,0); 
+0117:  BCF    08.4
+0118:  BSF    03.5
+0119:  BCF    08.4
+....................          output_bit(LED3,0); 
+011A:  BCF    03.5
+011B:  BCF    08.5
+011C:  BSF    03.5
+011D:  BCF    08.5
+011E:  BCF    03.5
+....................       }  
+....................    if (output_state==2)  
+011F:  MOVF   21,W
+0120:  SUBLW  02
+0121:  BTFSS  03.2
+0122:  GOTO   139
+....................       { 
+....................          output_bit(LED1,0); 
+0123:  BCF    08.3
+0124:  BSF    03.5
+0125:  BCF    08.3
+....................          output_bit(LED2,1); 
+0126:  BCF    03.5
+0127:  BSF    08.4
+0128:  BSF    03.5
+0129:  BCF    08.4
+....................          delay_ms(10); 
+012A:  MOVLW  0A
+012B:  BCF    03.5
+012C:  MOVWF  26
+012D:  CALL   004
+....................          output_bit(LED2,0); 
+012E:  BCF    08.4
+012F:  BSF    03.5
+0130:  BCF    08.4
+....................          delay_ms(10); 
+0131:  MOVLW  0A
+0132:  BCF    03.5
+0133:  MOVWF  26
+0134:  CALL   004
+....................          output_bit(LED3,0); 
+0135:  BCF    08.5
+0136:  BSF    03.5
+0137:  BCF    08.5
+0138:  BCF    03.5
+....................       } 
+....................    if (output_state==3)  
+0139:  MOVF   21,W
+013A:  SUBLW  03
+013B:  BTFSS  03.2
+013C:  GOTO   153
+....................       { 
+....................          output_bit(LED1,0); 
+013D:  BCF    08.3
+013E:  BSF    03.5
+013F:  BCF    08.3
+....................          output_bit(LED2,0); 
+0140:  BCF    03.5
+0141:  BCF    08.4
+0142:  BSF    03.5
+0143:  BCF    08.4
+....................          output_bit(LED3,1); 
+0144:  BCF    03.5
+0145:  BSF    08.5
+0146:  BSF    03.5
+0147:  BCF    08.5
+....................          delay_ms(10); 
+0148:  MOVLW  0A
+0149:  BCF    03.5
+014A:  MOVWF  26
+014B:  CALL   004
+....................          output_bit(LED3,0); 
+014C:  BCF    08.5
+014D:  BSF    03.5
+014E:  BCF    08.5
+....................          delay_ms(10); 
+014F:  MOVLW  0A
+0150:  BCF    03.5
+0151:  MOVWF  26
+0152:  CALL   004
+....................       } 
+0153:  GOTO   03A
+....................         
+....................         
+....................     } // End of Loop while (true) 
+....................  
+.................... } // End of main 
+0154:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

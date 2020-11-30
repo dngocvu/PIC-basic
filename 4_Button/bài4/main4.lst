@@ -1,0 +1,188 @@
+CCS PCM C Compiler, Version 5.078, 43599               06-Nov-18 09:43
+
+               Filename:   E:\bai tap vdk\4_Button\bài4\main4.lst
+
+               ROM used:   111 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   13 (4%) at main() level
+                           13 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #define S1    PIN_D0 
+.................... #define S2    PIN_D1 
+.................... #define LED1  PIN_D3 
+....................  
+.................... #include <main4.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+....................  
+....................  
+....................  
+.................... char S1_state=0; 
+.................... char LED1_state=0; 
+.................... int16  delaycntON=0; 
+.................... int16  delaycntOFF=0; 
+....................  
+.................... void main() 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  CLRF   20
+0008:  CLRF   21
+0009:  CLRF   23
+000A:  CLRF   22
+000B:  CLRF   25
+000C:  CLRF   24
+000D:  BSF    03.5
+000E:  BSF    03.6
+000F:  MOVF   09,W
+0010:  ANDLW  C0
+0011:  MOVWF  09
+0012:  BCF    03.6
+0013:  BCF    1F.4
+0014:  BCF    1F.5
+0015:  MOVLW  00
+0016:  BSF    03.6
+0017:  MOVWF  08
+0018:  BCF    03.5
+0019:  CLRF   07
+001A:  CLRF   08
+001B:  CLRF   09
+001C:  BCF    03.7
+.................... { 
+....................    set_tris_d(0b11110111); 
+001D:  MOVLW  F7
+001E:  BSF    03.5
+001F:  BCF    03.6
+0020:  MOVWF  08
+....................    output_bit(LED1,0); 
+0021:  BCF    03.5
+0022:  BCF    08.3
+0023:  BSF    03.5
+0024:  BCF    08.3
+....................    while(TRUE) 
+....................    { 
+....................       if (input(S1)==1)  
+0025:  BSF    08.0
+0026:  BCF    03.5
+0027:  BTFSS  08.0
+0028:  GOTO   02B
+....................          S1_state=1; 
+0029:  MOVLW  01
+002A:  MOVWF  20
+....................       if (input(S2)==1)  
+002B:  BSF    03.5
+002C:  BSF    08.1
+002D:  BCF    03.5
+002E:  BTFSS  08.1
+002F:  GOTO   031
+....................          LED1_state=0; 
+0030:  CLRF   21
+....................       if ((input(S1)==0)&(S1_state==1))  
+0031:  BSF    03.5
+0032:  BSF    08.0
+0033:  MOVLW  00
+0034:  BCF    03.5
+0035:  BTFSS  08.0
+0036:  MOVLW  01
+0037:  MOVWF  27
+0038:  DECFSZ 20,W
+0039:  GOTO   03B
+003A:  GOTO   03D
+003B:  MOVLW  00
+003C:  GOTO   03E
+003D:  MOVLW  01
+003E:  ANDWF  27,W
+003F:  BTFSC  03.2
+0040:  GOTO   044
+....................          { 
+....................             LED1_state=1; 
+0041:  MOVLW  01
+0042:  MOVWF  21
+....................             S1_state=0; 
+0043:  CLRF   20
+....................          } 
+....................       if(LED1_state==0)  
+0044:  MOVF   21,F
+0045:  BTFSS  03.2
+0046:  GOTO   04C
+....................          output_bit(LED1,0); 
+0047:  BCF    08.3
+0048:  BSF    03.5
+0049:  BCF    08.3
+004A:  GOTO   06D
+004B:  BCF    03.5
+....................       else  
+....................       { 
+....................          if (delaycntON<100)  
+004C:  MOVF   23,F
+004D:  BTFSS  03.2
+004E:  GOTO   058
+004F:  MOVF   22,W
+0050:  SUBLW  63
+0051:  BTFSS  03.0
+0052:  GOTO   058
+....................             output_bit(LED1,1); 
+0053:  BSF    08.3
+0054:  BSF    03.5
+0055:  BCF    08.3
+0056:  GOTO   067
+0057:  BCF    03.5
+....................          else if (delaycntON<200) 
+0058:  MOVF   23,F
+0059:  BTFSS  03.2
+005A:  GOTO   064
+005B:  MOVF   22,W
+005C:  SUBLW  C7
+005D:  BTFSS  03.0
+005E:  GOTO   064
+....................             output_bit(LED1,0); 
+005F:  BCF    08.3
+0060:  BSF    03.5
+0061:  BCF    08.3
+0062:  GOTO   067
+0063:  BCF    03.5
+....................               else delaycntON=0; 
+0064:  CLRF   23
+0065:  CLRF   22
+0066:  BSF    03.5
+....................          delaycntON = delaycntON+1; 
+0067:  MOVLW  01
+0068:  BCF    03.5
+0069:  ADDWF  22,F
+006A:  BTFSC  03.0
+006B:  INCF   23,F
+006C:  BSF    03.5
+....................       } 
+006D:  GOTO   025
+....................        
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+006E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

@@ -1,0 +1,63 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     @TRIS_C
+021     main.@SCRATCH1
+022     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @delay_ms1
+000018  @cinit1
+000018  main
+00002C  @cinit2
+
+Project Directory:
+    E:\bai tap vdk\button\bài3\
+
+Project Files:
+    main3.c                                                 [05-Nov-18 09:44  CRC=F4EB27AF]
+    main3.h                                                 [05-Nov-18 09:40  CRC=00000000]
+    C:\Program Files (x86)\PICC\Devices\16F887.h            [02-Apr-18 08:19  CRC=9C71CB72]
+
+Source signature=2DCEBE93
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=25A0
+
+Units:
+    main3 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main3.xsym
+    Errors:      main3.err
+    Ext Symbols: main3.esym
+    INHX8:       main3.hex
+    Symbols:     main3.sym
+    List:        main3.lst
+    Debug/COFF:  main3.cof
+    Project:     main3.ccspjt
+    Call Tree:   main3.tre
+    Statistics:  main3.STA

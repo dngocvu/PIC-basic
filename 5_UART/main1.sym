@@ -1,0 +1,86 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     S1_state
+021     S2_state
+022     S3_state
+023     S4_state
+024-037 c
+038-039 @sprintf_string
+03A     @delay_ms1.P1
+03A     main.@SCRATCH1
+03A     @PSTRINGR_1.@SCRATCH1
+03A     @PSTRINGC7_9600_62_63.@SCRATCH1
+03B     main.@SCRATCH2
+03B     @PSTRINGR_1.@SCRATCH2
+03B     @PSTRINGC7_9600_62_63.@SCRATCH2
+03C     @PSTRINGC7_9600_62_63.@SCRATCH3
+03D     @PSTRINGC7_9600_62_63.@SCRATCH4
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const659.call
+000009  @const661.call
+00000C  @const662.call
+00000F  @const663.call
+000012  @const664.call
+000015  @const665.call
+000018  @const666.call
+00001B  @const667.call
+00001E  @const668.call
+000021  @delay_ms1
+000035  @PSTRINGR_1
+00004E  @PSTRINGC7_9600_62_63
+0000A6  main
+0000A6  @cinit1
+0000CB  @cinit2
+
+Project Directory:
+    E:\bai tap vdk\5_UART\
+
+Project Files:
+    main1.c                                                 [16-Dec-18 20:30  CRC=A6B0B235]
+    main1.h                                                 [06-Nov-18 06:54  CRC=00000000]
+    C:\Program Files (x86)\PICC\Devices\16F887.h            [02-Apr-18 08:19  CRC=9C71CB72]
+
+Source signature=DF944919
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=3586
+
+Units:
+    main1 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main1.xsym
+    Errors:      main1.err
+    Ext Symbols: main1.esym
+    INHX8:       main1.hex
+    Symbols:     main1.sym
+    List:        main1.lst
+    Debug/COFF:  main1.cof
+    Project:     main1.ccspjt
+    Call Tree:   main1.tre
+    Statistics:  main1.STA

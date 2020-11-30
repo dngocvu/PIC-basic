@@ -1,0 +1,1137 @@
+CCS PCM C Compiler, Version 5.078, 43599               06-Nov-18 11:15
+
+               Filename:   E:\bai tap vdk\3_Led7vsIC\bài10\main10.lst
+
+               ROM used:   805 words (10%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 2 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   135
+0003:  NOP
+.................... #include <main10.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+*
+002A:  MOVLW  22
+002B:  MOVWF  04
+002C:  BCF    03.7
+002D:  MOVF   00,W
+002E:  BTFSC  03.2
+002F:  GOTO   03D
+0030:  MOVLW  06
+0031:  MOVWF  78
+0032:  CLRF   77
+0033:  DECFSZ 77,F
+0034:  GOTO   033
+0035:  DECFSZ 78,F
+0036:  GOTO   032
+0037:  MOVLW  7B
+0038:  MOVWF  77
+0039:  DECFSZ 77,F
+003A:  GOTO   039
+003B:  DECFSZ 00,F
+003C:  GOTO   030
+....................  
+....................  
+....................  
+....................  
+.................... unsigned int8 i=0; 
+.................... unsigned int8 j=0; 
+....................  
+.................... void data(unsigned char d) 
+.................... { 
+....................    if(d==1) {output_high(pin_e1);} 
+*
+0004:  DECFSZ 22,W
+0005:  GOTO   00A
+0006:  BSF    03.5
+0007:  BCF    09.1
+0008:  BCF    03.5
+0009:  BSF    09.1
+....................    if(d==0) {output_low(pin_e1);} 
+000A:  MOVF   22,F
+000B:  BTFSS  03.2
+000C:  GOTO   011
+000D:  BSF    03.5
+000E:  BCF    09.1
+000F:  BCF    03.5
+0010:  BCF    09.1
+0011:  RETURN
+.................... } 
+.................... void clk() 
+.................... { 
+....................    output_high(pin_e0); 
+0012:  BSF    03.5
+0013:  BCF    09.0
+0014:  BCF    03.5
+0015:  BSF    09.0
+....................    output_low(pin_e0); 
+0016:  BSF    03.5
+0017:  BCF    09.0
+0018:  BCF    03.5
+0019:  BCF    09.0
+001A:  RETURN
+.................... } 
+.................... void latch() 
+.................... { 
+....................    output_high(pin_e2); 
+*
+0020:  BSF    03.5
+0021:  BCF    09.2
+0022:  BCF    03.5
+0023:  BSF    09.2
+....................    output_low(pin_e2); 
+0024:  BSF    03.5
+0025:  BCF    09.2
+0026:  BCF    03.5
+0027:  BCF    09.2
+....................    delay_ms(50); 
+0028:  MOVLW  32
+0029:  MOVWF  22
+*
+003D:  RETURN
+.................... } 
+.................... void zero() 
+.................... { 
+....................    data(0); 
+003E:  CLRF   22
+003F:  CALL   004
+....................    clk(); 
+0040:  CALL   012
+....................    for(i=0;i<6;i++){ 
+0041:  CLRF   20
+0042:  MOVF   20,W
+0043:  SUBLW  05
+0044:  BTFSS  03.0
+0045:  GOTO   04C
+....................    data(1); 
+0046:  MOVLW  01
+0047:  MOVWF  22
+0048:  CALL   004
+....................    clk(); 
+0049:  CALL   012
+004A:  INCF   20,F
+004B:  GOTO   042
+.................... } 
+004C:  RETURN
+.................... } 
+.................... void one() 
+.................... { 
+....................    for(i=0;i<4;i++){ 
+004D:  CLRF   20
+004E:  MOVF   20,W
+004F:  SUBLW  03
+0050:  BTFSS  03.0
+0051:  GOTO   057
+....................    data(0); 
+0052:  CLRF   22
+0053:  CALL   004
+....................    clk(); 
+0054:  CALL   012
+0055:  INCF   20,F
+0056:  GOTO   04E
+....................    } 
+....................    for(i=0;i<2;i++){ 
+0057:  CLRF   20
+0058:  MOVF   20,W
+0059:  SUBLW  01
+005A:  BTFSS  03.0
+005B:  GOTO   062
+....................    data(1); 
+005C:  MOVLW  01
+005D:  MOVWF  22
+005E:  CALL   004
+....................    clk(); 
+005F:  CALL   012
+0060:  INCF   20,F
+0061:  GOTO   058
+....................    } 
+....................    data(0); 
+0062:  CLRF   22
+0063:  CALL   004
+....................    clk(); 
+0064:  CALL   012
+0065:  RETURN
+.................... } 
+.................... void two() 
+.................... { 
+....................    data(1); 
+0066:  MOVLW  01
+0067:  MOVWF  22
+0068:  CALL   004
+....................    clk(); 
+0069:  CALL   012
+....................    data(0); 
+006A:  CLRF   22
+006B:  CALL   004
+....................    clk(); 
+006C:  CALL   012
+....................    for(i=0;i<2;i++){ 
+006D:  CLRF   20
+006E:  MOVF   20,W
+006F:  SUBLW  01
+0070:  BTFSS  03.0
+0071:  GOTO   078
+....................    data(1); 
+0072:  MOVLW  01
+0073:  MOVWF  22
+0074:  CALL   004
+....................    clk(); 
+0075:  CALL   012
+0076:  INCF   20,F
+0077:  GOTO   06E
+....................    } 
+....................    data(0); 
+0078:  CLRF   22
+0079:  CALL   004
+....................    clk(); 
+007A:  CALL   012
+....................    for(i=0;i<2;i++){ 
+007B:  CLRF   20
+007C:  MOVF   20,W
+007D:  SUBLW  01
+007E:  BTFSS  03.0
+007F:  GOTO   086
+....................    data(1); 
+0080:  MOVLW  01
+0081:  MOVWF  22
+0082:  CALL   004
+....................    clk(); 
+0083:  CALL   012
+0084:  INCF   20,F
+0085:  GOTO   07C
+....................    } 
+0086:  RETURN
+.................... } 
+.................... void three() 
+.................... { 
+....................    data(1); 
+0087:  MOVLW  01
+0088:  MOVWF  22
+0089:  CALL   004
+....................    clk(); 
+008A:  CALL   012
+....................    for(i=0;i<2;i++){ 
+008B:  CLRF   20
+008C:  MOVF   20,W
+008D:  SUBLW  01
+008E:  BTFSS  03.0
+008F:  GOTO   095
+....................    data(0); 
+0090:  CLRF   22
+0091:  CALL   004
+....................    clk(); 
+0092:  CALL   012
+0093:  INCF   20,F
+0094:  GOTO   08C
+....................    } 
+....................    for(i=0;i<4;i++){ 
+0095:  CLRF   20
+0096:  MOVF   20,W
+0097:  SUBLW  03
+0098:  BTFSS  03.0
+0099:  GOTO   0A0
+....................    data(1); 
+009A:  MOVLW  01
+009B:  MOVWF  22
+009C:  CALL   004
+....................    clk(); 
+009D:  CALL   012
+009E:  INCF   20,F
+009F:  GOTO   096
+....................    } 
+00A0:  RETURN
+.................... } 
+.................... void four() 
+.................... { 
+....................    for(i=0;i<2;i++){ 
+00A1:  CLRF   20
+00A2:  MOVF   20,W
+00A3:  SUBLW  01
+00A4:  BTFSS  03.0
+00A5:  GOTO   0AC
+....................    data(1); 
+00A6:  MOVLW  01
+00A7:  MOVWF  22
+00A8:  CALL   004
+....................    clk(); 
+00A9:  CALL   012
+00AA:  INCF   20,F
+00AB:  GOTO   0A2
+....................    } 
+....................    for(i=0;i<2;i++){ 
+00AC:  CLRF   20
+00AD:  MOVF   20,W
+00AE:  SUBLW  01
+00AF:  BTFSS  03.0
+00B0:  GOTO   0B6
+....................    data(0); 
+00B1:  CLRF   22
+00B2:  CALL   004
+....................    clk(); 
+00B3:  CALL   012
+00B4:  INCF   20,F
+00B5:  GOTO   0AD
+....................    } 
+....................    for(i=0;i<2;i++){ 
+00B6:  CLRF   20
+00B7:  MOVF   20,W
+00B8:  SUBLW  01
+00B9:  BTFSS  03.0
+00BA:  GOTO   0C1
+....................    data(1); 
+00BB:  MOVLW  01
+00BC:  MOVWF  22
+00BD:  CALL   004
+....................    clk(); 
+00BE:  CALL   012
+00BF:  INCF   20,F
+00C0:  GOTO   0B7
+....................    } 
+....................    data(0); 
+00C1:  CLRF   22
+00C2:  CALL   004
+....................    clk(); 
+00C3:  CALL   012
+00C4:  RETURN
+.................... } 
+.................... void five() 
+.................... { 
+....................    for(i=0;i<2;i++){ 
+00C5:  CLRF   20
+00C6:  MOVF   20,W
+00C7:  SUBLW  01
+00C8:  BTFSS  03.0
+00C9:  GOTO   0D0
+....................    data(1); 
+00CA:  MOVLW  01
+00CB:  MOVWF  22
+00CC:  CALL   004
+....................    clk(); 
+00CD:  CALL   012
+00CE:  INCF   20,F
+00CF:  GOTO   0C6
+....................    } 
+....................    data(0); 
+00D0:  CLRF   22
+00D1:  CALL   004
+....................    clk(); 
+00D2:  CALL   012
+....................    for(i=0;i<2;i++){ 
+00D3:  CLRF   20
+00D4:  MOVF   20,W
+00D5:  SUBLW  01
+00D6:  BTFSS  03.0
+00D7:  GOTO   0DE
+....................    data(1); 
+00D8:  MOVLW  01
+00D9:  MOVWF  22
+00DA:  CALL   004
+....................    clk(); 
+00DB:  CALL   012
+00DC:  INCF   20,F
+00DD:  GOTO   0D4
+....................    } 
+....................    data(0); 
+00DE:  CLRF   22
+00DF:  CALL   004
+....................    clk(); 
+00E0:  CALL   012
+....................    data(1); 
+00E1:  MOVLW  01
+00E2:  MOVWF  22
+00E3:  CALL   004
+....................    clk(); 
+00E4:  CALL   012
+00E5:  RETURN
+.................... }   
+.................... void six() 
+.................... { 
+....................    for(i=0;i<5;i++){ 
+00E6:  CLRF   20
+00E7:  MOVF   20,W
+00E8:  SUBLW  04
+00E9:  BTFSS  03.0
+00EA:  GOTO   0F1
+....................    data(1); 
+00EB:  MOVLW  01
+00EC:  MOVWF  22
+00ED:  CALL   004
+....................    clk(); 
+00EE:  CALL   012
+00EF:  INCF   20,F
+00F0:  GOTO   0E7
+....................    } 
+....................    data(0); 
+00F1:  CLRF   22
+00F2:  CALL   004
+....................    clk(); 
+00F3:  CALL   012
+....................    data(1); 
+00F4:  MOVLW  01
+00F5:  MOVWF  22
+00F6:  CALL   004
+....................    clk(); 
+00F7:  CALL   012
+00F8:  RETURN
+.................... } 
+.................... void seven() 
+.................... { 
+....................    for(i=0;i<4;i++){ 
+00F9:  CLRF   20
+00FA:  MOVF   20,W
+00FB:  SUBLW  03
+00FC:  BTFSS  03.0
+00FD:  GOTO   103
+....................    data(0); 
+00FE:  CLRF   22
+00FF:  CALL   004
+....................    clk(); 
+0100:  CALL   012
+0101:  INCF   20,F
+0102:  GOTO   0FA
+....................    } 
+....................    for(i=0;i<3;i++){ 
+0103:  CLRF   20
+0104:  MOVF   20,W
+0105:  SUBLW  02
+0106:  BTFSS  03.0
+0107:  GOTO   10E
+....................    data(1); 
+0108:  MOVLW  01
+0109:  MOVWF  22
+010A:  CALL   004
+....................    clk(); 
+010B:  CALL   012
+010C:  INCF   20,F
+010D:  GOTO   104
+....................    } 
+010E:  RETURN
+.................... } 
+.................... void eight() 
+.................... { 
+....................    for(i=0;i<7;i++){ 
+010F:  CLRF   20
+0110:  MOVF   20,W
+0111:  SUBLW  06
+0112:  BTFSS  03.0
+0113:  GOTO   11A
+....................    data(1); 
+0114:  MOVLW  01
+0115:  MOVWF  22
+0116:  CALL   004
+....................    clk(); 
+0117:  CALL   012
+0118:  INCF   20,F
+0119:  GOTO   110
+....................    } 
+011A:  RETURN
+.................... } 
+.................... void nine() 
+.................... { 
+....................    for(i=0;i<2;i++){ 
+011B:  CLRF   20
+011C:  MOVF   20,W
+011D:  SUBLW  01
+011E:  BTFSS  03.0
+011F:  GOTO   126
+....................    data(1); 
+0120:  MOVLW  01
+0121:  MOVWF  22
+0122:  CALL   004
+....................    clk(); 
+0123:  CALL   012
+0124:  INCF   20,F
+0125:  GOTO   11C
+....................    } 
+....................    data(0); 
+0126:  CLRF   22
+0127:  CALL   004
+....................    clk(); 
+0128:  CALL   012
+....................    for(i=0;i<4;i++){ 
+0129:  CLRF   20
+012A:  MOVF   20,W
+012B:  SUBLW  03
+012C:  BTFSS  03.0
+012D:  GOTO   134
+....................    data(1); 
+012E:  MOVLW  01
+012F:  MOVWF  22
+0130:  CALL   004
+....................    clk(); 
+0131:  CALL   012
+0132:  INCF   20,F
+0133:  GOTO   12A
+....................    } 
+0134:  RETURN
+.................... } 
+.................... void high() 
+.................... { 
+....................    data(1); 
+*
+001B:  MOVLW  01
+001C:  MOVWF  22
+001D:  CALL   004
+....................    clk(); 
+001E:  CALL   012
+001F:  RETURN
+.................... } 
+.................... void low() 
+.................... { 
+....................    data(0); 
+....................    clk(); 
+.................... } 
+.................... void main() 
+*
+0135:  MOVF   03,W
+0136:  ANDLW  1F
+0137:  MOVWF  03
+0138:  CLRF   20
+0139:  CLRF   21
+013A:  BSF    03.5
+013B:  BSF    03.6
+013C:  MOVF   09,W
+013D:  ANDLW  C0
+013E:  MOVWF  09
+013F:  BCF    03.6
+0140:  BCF    1F.4
+0141:  BCF    1F.5
+0142:  MOVLW  00
+0143:  BSF    03.6
+0144:  MOVWF  08
+0145:  BCF    03.5
+0146:  CLRF   07
+0147:  CLRF   08
+0148:  CLRF   09
+0149:  BCF    03.7
+.................... { 
+....................    set_tris_e(0x00); 
+014A:  BSF    03.5
+014B:  BCF    03.6
+014C:  BCF    09.0
+014D:  BCF    09.1
+014E:  BCF    09.2
+014F:  BCF    09.3
+....................    for(i=0;i<7;i++){ 
+0150:  BCF    03.5
+0151:  CLRF   20
+0152:  MOVF   20,W
+0153:  SUBLW  06
+0154:  BTFSS  03.0
+0155:  GOTO   15B
+....................    data(0); 
+0156:  CLRF   22
+0157:  CALL   004
+....................    clk();} 
+0158:  CALL   012
+0159:  INCF   20,F
+015A:  GOTO   152
+....................    high(); 
+015B:  CALL   01B
+....................    for(i=0;i<7;i++){ 
+015C:  CLRF   20
+015D:  MOVF   20,W
+015E:  SUBLW  06
+015F:  BTFSS  03.0
+0160:  GOTO   166
+....................    data(0); 
+0161:  CLRF   22
+0162:  CALL   004
+....................    clk();} 
+0163:  CALL   012
+0164:  INCF   20,F
+0165:  GOTO   15D
+....................    latch(); 
+0166:  CALL   020
+....................    //delay_ms(1000); 
+....................    while(TRUE) 
+....................    {    
+....................          for(j=0;j<10;j++) 
+0167:  CLRF   21
+0168:  MOVF   21,W
+0169:  SUBLW  09
+016A:  BTFSS  03.0
+016B:  GOTO   323
+....................          { 
+....................             if (j==0)  { 
+016C:  MOVF   21,F
+016D:  BTFSS  03.2
+016E:  GOTO   197
+....................                         zero();high();zero();latch(); 
+016F:  CALL   03E
+0170:  CALL   01B
+0171:  CALL   03E
+0172:  CALL   020
+....................                         one();high();zero();latch(); 
+0173:  CALL   04D
+0174:  CALL   01B
+0175:  CALL   03E
+0176:  CALL   020
+....................                         two();high();zero();latch(); 
+0177:  CALL   066
+0178:  CALL   01B
+0179:  CALL   03E
+017A:  CALL   020
+....................                         three();high();zero();latch(); 
+017B:  CALL   087
+017C:  CALL   01B
+017D:  CALL   03E
+017E:  CALL   020
+....................                         four();high();zero();latch(); 
+017F:  CALL   0A1
+0180:  CALL   01B
+0181:  CALL   03E
+0182:  CALL   020
+....................                         five();high();zero();latch(); 
+0183:  CALL   0C5
+0184:  CALL   01B
+0185:  CALL   03E
+0186:  CALL   020
+....................                         six();high();zero();latch(); 
+0187:  CALL   0E6
+0188:  CALL   01B
+0189:  CALL   03E
+018A:  CALL   020
+....................                         seven();high();zero();latch(); 
+018B:  CALL   0F9
+018C:  CALL   01B
+018D:  CALL   03E
+018E:  CALL   020
+....................                         eight();high();zero();latch(); 
+018F:  CALL   10F
+0190:  CALL   01B
+0191:  CALL   03E
+0192:  CALL   020
+....................                         nine();high();zero();latch(); 
+0193:  CALL   11B
+0194:  CALL   01B
+0195:  CALL   03E
+0196:  CALL   020
+....................                         } 
+....................             if (j==1) { 
+0197:  DECFSZ 21,W
+0198:  GOTO   1C1
+....................                         zero();high();one();latch(); 
+0199:  CALL   03E
+019A:  CALL   01B
+019B:  CALL   04D
+019C:  CALL   020
+....................                         one();high();one();latch(); 
+019D:  CALL   04D
+019E:  CALL   01B
+019F:  CALL   04D
+01A0:  CALL   020
+....................                         two();high();one();latch(); 
+01A1:  CALL   066
+01A2:  CALL   01B
+01A3:  CALL   04D
+01A4:  CALL   020
+....................                         three();high();one();latch(); 
+01A5:  CALL   087
+01A6:  CALL   01B
+01A7:  CALL   04D
+01A8:  CALL   020
+....................                         four();high();one();latch(); 
+01A9:  CALL   0A1
+01AA:  CALL   01B
+01AB:  CALL   04D
+01AC:  CALL   020
+....................                         five();high();one();latch(); 
+01AD:  CALL   0C5
+01AE:  CALL   01B
+01AF:  CALL   04D
+01B0:  CALL   020
+....................                         six();high();one();latch(); 
+01B1:  CALL   0E6
+01B2:  CALL   01B
+01B3:  CALL   04D
+01B4:  CALL   020
+....................                         seven();high();one();latch(); 
+01B5:  CALL   0F9
+01B6:  CALL   01B
+01B7:  CALL   04D
+01B8:  CALL   020
+....................                         eight();high();one();latch(); 
+01B9:  CALL   10F
+01BA:  CALL   01B
+01BB:  CALL   04D
+01BC:  CALL   020
+....................                         nine();high();one();latch(); 
+01BD:  CALL   11B
+01BE:  CALL   01B
+01BF:  CALL   04D
+01C0:  CALL   020
+....................                          
+....................                         } 
+....................             if (j==2) { 
+01C1:  MOVF   21,W
+01C2:  SUBLW  02
+01C3:  BTFSS  03.2
+01C4:  GOTO   1ED
+....................                         zero();high();two();latch(); 
+01C5:  CALL   03E
+01C6:  CALL   01B
+01C7:  CALL   066
+01C8:  CALL   020
+....................                         one();high();two();latch(); 
+01C9:  CALL   04D
+01CA:  CALL   01B
+01CB:  CALL   066
+01CC:  CALL   020
+....................                         two();high();two();latch(); 
+01CD:  CALL   066
+01CE:  CALL   01B
+01CF:  CALL   066
+01D0:  CALL   020
+....................                         three();high();two();latch(); 
+01D1:  CALL   087
+01D2:  CALL   01B
+01D3:  CALL   066
+01D4:  CALL   020
+....................                         four();high();two();latch(); 
+01D5:  CALL   0A1
+01D6:  CALL   01B
+01D7:  CALL   066
+01D8:  CALL   020
+....................                         five();high();two();latch(); 
+01D9:  CALL   0C5
+01DA:  CALL   01B
+01DB:  CALL   066
+01DC:  CALL   020
+....................                         six();high();two();latch(); 
+01DD:  CALL   0E6
+01DE:  CALL   01B
+01DF:  CALL   066
+01E0:  CALL   020
+....................                         seven();high();two();latch(); 
+01E1:  CALL   0F9
+01E2:  CALL   01B
+01E3:  CALL   066
+01E4:  CALL   020
+....................                         eight();high();two();latch(); 
+01E5:  CALL   10F
+01E6:  CALL   01B
+01E7:  CALL   066
+01E8:  CALL   020
+....................                         nine();high();two();latch(); 
+01E9:  CALL   11B
+01EA:  CALL   01B
+01EB:  CALL   066
+01EC:  CALL   020
+....................                         } 
+....................             if (j==3) { 
+01ED:  MOVF   21,W
+01EE:  SUBLW  03
+01EF:  BTFSS  03.2
+01F0:  GOTO   219
+....................                         zero();high();three();latch(); 
+01F1:  CALL   03E
+01F2:  CALL   01B
+01F3:  CALL   087
+01F4:  CALL   020
+....................                         one();high();three();latch(); 
+01F5:  CALL   04D
+01F6:  CALL   01B
+01F7:  CALL   087
+01F8:  CALL   020
+....................                         two();high();three();latch(); 
+01F9:  CALL   066
+01FA:  CALL   01B
+01FB:  CALL   087
+01FC:  CALL   020
+....................                         three();high();three();latch(); 
+01FD:  CALL   087
+01FE:  CALL   01B
+01FF:  CALL   087
+0200:  CALL   020
+....................                         four();high();three();latch(); 
+0201:  CALL   0A1
+0202:  CALL   01B
+0203:  CALL   087
+0204:  CALL   020
+....................                         five();high();three();latch(); 
+0205:  CALL   0C5
+0206:  CALL   01B
+0207:  CALL   087
+0208:  CALL   020
+....................                         six();high();three();latch(); 
+0209:  CALL   0E6
+020A:  CALL   01B
+020B:  CALL   087
+020C:  CALL   020
+....................                         seven();high();three();latch(); 
+020D:  CALL   0F9
+020E:  CALL   01B
+020F:  CALL   087
+0210:  CALL   020
+....................                         eight();high();three();latch(); 
+0211:  CALL   10F
+0212:  CALL   01B
+0213:  CALL   087
+0214:  CALL   020
+....................                         nine();high();three();latch();} 
+0215:  CALL   11B
+0216:  CALL   01B
+0217:  CALL   087
+0218:  CALL   020
+....................             if (j==4) {zero();high();four();latch(); 
+0219:  MOVF   21,W
+021A:  SUBLW  04
+021B:  BTFSS  03.2
+021C:  GOTO   245
+021D:  CALL   03E
+021E:  CALL   01B
+021F:  CALL   0A1
+0220:  CALL   020
+....................                         one();high();four();latch(); 
+0221:  CALL   04D
+0222:  CALL   01B
+0223:  CALL   0A1
+0224:  CALL   020
+....................                         two();high();four();latch(); 
+0225:  CALL   066
+0226:  CALL   01B
+0227:  CALL   0A1
+0228:  CALL   020
+....................                         three();high();four();latch(); 
+0229:  CALL   087
+022A:  CALL   01B
+022B:  CALL   0A1
+022C:  CALL   020
+....................                         four();high();four();latch(); 
+022D:  CALL   0A1
+022E:  CALL   01B
+022F:  CALL   0A1
+0230:  CALL   020
+....................                         five();high();four();latch(); 
+0231:  CALL   0C5
+0232:  CALL   01B
+0233:  CALL   0A1
+0234:  CALL   020
+....................                         six();high();four();latch(); 
+0235:  CALL   0E6
+0236:  CALL   01B
+0237:  CALL   0A1
+0238:  CALL   020
+....................                         seven();high();four();latch(); 
+0239:  CALL   0F9
+023A:  CALL   01B
+023B:  CALL   0A1
+023C:  CALL   020
+....................                         eight();high();four();latch(); 
+023D:  CALL   10F
+023E:  CALL   01B
+023F:  CALL   0A1
+0240:  CALL   020
+....................                         nine();high();four();latch();} 
+0241:  CALL   11B
+0242:  CALL   01B
+0243:  CALL   0A1
+0244:  CALL   020
+....................             if (j==5) {zero();high();five();latch(); 
+0245:  MOVF   21,W
+0246:  SUBLW  05
+0247:  BTFSS  03.2
+0248:  GOTO   271
+0249:  CALL   03E
+024A:  CALL   01B
+024B:  CALL   0C5
+024C:  CALL   020
+....................                         one();high();five();latch(); 
+024D:  CALL   04D
+024E:  CALL   01B
+024F:  CALL   0C5
+0250:  CALL   020
+....................                         two();high();five();latch(); 
+0251:  CALL   066
+0252:  CALL   01B
+0253:  CALL   0C5
+0254:  CALL   020
+....................                         three();high();five();latch(); 
+0255:  CALL   087
+0256:  CALL   01B
+0257:  CALL   0C5
+0258:  CALL   020
+....................                         four();high();five();latch(); 
+0259:  CALL   0A1
+025A:  CALL   01B
+025B:  CALL   0C5
+025C:  CALL   020
+....................                         five();high();five();latch(); 
+025D:  CALL   0C5
+025E:  CALL   01B
+025F:  CALL   0C5
+0260:  CALL   020
+....................                         six();high();five();latch(); 
+0261:  CALL   0E6
+0262:  CALL   01B
+0263:  CALL   0C5
+0264:  CALL   020
+....................                         seven();high();five();latch(); 
+0265:  CALL   0F9
+0266:  CALL   01B
+0267:  CALL   0C5
+0268:  CALL   020
+....................                         eight();high();five();latch(); 
+0269:  CALL   10F
+026A:  CALL   01B
+026B:  CALL   0C5
+026C:  CALL   020
+....................                         nine();high();five();latch();} 
+026D:  CALL   11B
+026E:  CALL   01B
+026F:  CALL   0C5
+0270:  CALL   020
+....................             if (j==6) {zero();high();six();latch(); 
+0271:  MOVF   21,W
+0272:  SUBLW  06
+0273:  BTFSS  03.2
+0274:  GOTO   29D
+0275:  CALL   03E
+0276:  CALL   01B
+0277:  CALL   0E6
+0278:  CALL   020
+....................                         one();high();six();latch(); 
+0279:  CALL   04D
+027A:  CALL   01B
+027B:  CALL   0E6
+027C:  CALL   020
+....................                         two();high();six();latch(); 
+027D:  CALL   066
+027E:  CALL   01B
+027F:  CALL   0E6
+0280:  CALL   020
+....................                         three();high();six();latch(); 
+0281:  CALL   087
+0282:  CALL   01B
+0283:  CALL   0E6
+0284:  CALL   020
+....................                         four();high();six();latch(); 
+0285:  CALL   0A1
+0286:  CALL   01B
+0287:  CALL   0E6
+0288:  CALL   020
+....................                         five();high();six();latch(); 
+0289:  CALL   0C5
+028A:  CALL   01B
+028B:  CALL   0E6
+028C:  CALL   020
+....................                         six();high();six();latch(); 
+028D:  CALL   0E6
+028E:  CALL   01B
+028F:  CALL   0E6
+0290:  CALL   020
+....................                         seven();high();six();latch(); 
+0291:  CALL   0F9
+0292:  CALL   01B
+0293:  CALL   0E6
+0294:  CALL   020
+....................                         eight();high();six();latch(); 
+0295:  CALL   10F
+0296:  CALL   01B
+0297:  CALL   0E6
+0298:  CALL   020
+....................                         nine();high();six();latch();} 
+0299:  CALL   11B
+029A:  CALL   01B
+029B:  CALL   0E6
+029C:  CALL   020
+....................             if (j==7) {zero();high();seven();latch(); 
+029D:  MOVF   21,W
+029E:  SUBLW  07
+029F:  BTFSS  03.2
+02A0:  GOTO   2C9
+02A1:  CALL   03E
+02A2:  CALL   01B
+02A3:  CALL   0F9
+02A4:  CALL   020
+....................                         one();high();seven();latch(); 
+02A5:  CALL   04D
+02A6:  CALL   01B
+02A7:  CALL   0F9
+02A8:  CALL   020
+....................                         two();high();seven();latch(); 
+02A9:  CALL   066
+02AA:  CALL   01B
+02AB:  CALL   0F9
+02AC:  CALL   020
+....................                         three();high();seven();latch(); 
+02AD:  CALL   087
+02AE:  CALL   01B
+02AF:  CALL   0F9
+02B0:  CALL   020
+....................                         four();high();seven();latch(); 
+02B1:  CALL   0A1
+02B2:  CALL   01B
+02B3:  CALL   0F9
+02B4:  CALL   020
+....................                         five();high();seven();latch(); 
+02B5:  CALL   0C5
+02B6:  CALL   01B
+02B7:  CALL   0F9
+02B8:  CALL   020
+....................                         six();high();seven();latch(); 
+02B9:  CALL   0E6
+02BA:  CALL   01B
+02BB:  CALL   0F9
+02BC:  CALL   020
+....................                         seven();high();seven();latch(); 
+02BD:  CALL   0F9
+02BE:  CALL   01B
+02BF:  CALL   0F9
+02C0:  CALL   020
+....................                         eight();high();seven();latch(); 
+02C1:  CALL   10F
+02C2:  CALL   01B
+02C3:  CALL   0F9
+02C4:  CALL   020
+....................                         nine();high();seven();latch();} 
+02C5:  CALL   11B
+02C6:  CALL   01B
+02C7:  CALL   0F9
+02C8:  CALL   020
+....................             if (j==8) {zero();high();eight();latch(); 
+02C9:  MOVF   21,W
+02CA:  SUBLW  08
+02CB:  BTFSS  03.2
+02CC:  GOTO   2F5
+02CD:  CALL   03E
+02CE:  CALL   01B
+02CF:  CALL   10F
+02D0:  CALL   020
+....................                         one();high();eight();latch(); 
+02D1:  CALL   04D
+02D2:  CALL   01B
+02D3:  CALL   10F
+02D4:  CALL   020
+....................                         two();high();eight();latch(); 
+02D5:  CALL   066
+02D6:  CALL   01B
+02D7:  CALL   10F
+02D8:  CALL   020
+....................                         three();high();eight();latch(); 
+02D9:  CALL   087
+02DA:  CALL   01B
+02DB:  CALL   10F
+02DC:  CALL   020
+....................                         four();high();eight();latch(); 
+02DD:  CALL   0A1
+02DE:  CALL   01B
+02DF:  CALL   10F
+02E0:  CALL   020
+....................                         five();high();eight();latch(); 
+02E1:  CALL   0C5
+02E2:  CALL   01B
+02E3:  CALL   10F
+02E4:  CALL   020
+....................                         six();high();eight();latch(); 
+02E5:  CALL   0E6
+02E6:  CALL   01B
+02E7:  CALL   10F
+02E8:  CALL   020
+....................                         seven();high();eight();latch(); 
+02E9:  CALL   0F9
+02EA:  CALL   01B
+02EB:  CALL   10F
+02EC:  CALL   020
+....................                         eight();high();eight();latch(); 
+02ED:  CALL   10F
+02EE:  CALL   01B
+02EF:  CALL   10F
+02F0:  CALL   020
+....................                         nine();high();eight();latch();} 
+02F1:  CALL   11B
+02F2:  CALL   01B
+02F3:  CALL   10F
+02F4:  CALL   020
+....................             if (j==9) {zero();high();nine();latch(); 
+02F5:  MOVF   21,W
+02F6:  SUBLW  09
+02F7:  BTFSS  03.2
+02F8:  GOTO   321
+02F9:  CALL   03E
+02FA:  CALL   01B
+02FB:  CALL   11B
+02FC:  CALL   020
+....................                         one();high();nine();latch(); 
+02FD:  CALL   04D
+02FE:  CALL   01B
+02FF:  CALL   11B
+0300:  CALL   020
+....................                         two();high();nine();latch(); 
+0301:  CALL   066
+0302:  CALL   01B
+0303:  CALL   11B
+0304:  CALL   020
+....................                         three();high();nine();latch(); 
+0305:  CALL   087
+0306:  CALL   01B
+0307:  CALL   11B
+0308:  CALL   020
+....................                         four();high();nine();latch(); 
+0309:  CALL   0A1
+030A:  CALL   01B
+030B:  CALL   11B
+030C:  CALL   020
+....................                         five();high();nine();latch(); 
+030D:  CALL   0C5
+030E:  CALL   01B
+030F:  CALL   11B
+0310:  CALL   020
+....................                         six();high();nine();latch(); 
+0311:  CALL   0E6
+0312:  CALL   01B
+0313:  CALL   11B
+0314:  CALL   020
+....................                         seven();high();nine();latch(); 
+0315:  CALL   0F9
+0316:  CALL   01B
+0317:  CALL   11B
+0318:  CALL   020
+....................                         eight();high();nine();latch(); 
+0319:  CALL   10F
+031A:  CALL   01B
+031B:  CALL   11B
+031C:  CALL   020
+....................                         nine();high();nine();latch();} 
+031D:  CALL   11B
+031E:  CALL   01B
+031F:  CALL   11B
+0320:  CALL   020
+0321:  INCF   21,F
+0322:  GOTO   168
+....................          } 
+0323:  GOTO   167
+....................           
+....................  
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+0324:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

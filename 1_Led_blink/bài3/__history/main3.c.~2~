@@ -1,0 +1,31 @@
+#include <main3.h>
+
+void main()
+{
+  set_tris_c(0x00);
+  output_c(0x00);
+   while(TRUE)
+   {
+   output_c(0x01); 
+   delay_ms(300);
+   output_c(0x02); 
+   delay_ms(300);
+   output_c(0x04); 
+   delay_ms(300);
+   output_c(0x08); 
+   delay_ms(300);
+   output_c(0x10); 
+   delay_ms(300);
+   output_c(0x20); 
+   delay_ms(300);
+   output_c(0x40); 
+   delay_ms(300);
+   output_c(0x80); 
+   delay_ms(300);
+   
+   
+      //TODO: User Code
+   }
+
+}
+

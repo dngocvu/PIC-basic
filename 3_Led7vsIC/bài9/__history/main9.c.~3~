@@ -1,0 +1,281 @@
+#include <main9.h>
+
+unsigned int8 i=0;
+unsigned int8 j=0;
+
+void data(unsigned char d)
+{
+   if(d==1) {output_high(pin_e1);}
+   if(d==0) {output_low(pin_e1);}
+}
+void clk()
+{
+   output_high(pin_e0);
+   output_low(pin_e0);
+}
+void latch()
+{
+   output_high(pin_e2);
+   output_low(pin_e2);
+   delay_ms(500);
+}
+void zero()
+{
+   data(1);
+   clk();
+   for(i=0;i<6;i++){
+   data(0);
+   clk();
+}
+}
+void one()
+{
+   for(i=0;i<4;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+}
+void two()
+{
+   data(0);
+   clk();
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+}
+void three()
+{
+   data(0);
+   clk();
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<4;i++){
+   data(0);
+   clk();
+   }
+}
+void four()
+{
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+}
+void five()
+{
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   data(0);
+   clk();
+}  
+void six()
+{
+   for(i=0;i<5;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   data(0);
+   clk();
+}
+void seven()
+{
+   for(i=0;i<4;i++){
+   data(1);
+   clk();
+   }
+   for(i=0;i<3;i++){
+   data(0);
+   clk();
+   }
+}
+void eight()
+{
+   for(i=0;i<7;i++){
+   data(0);
+   clk();
+   }
+}
+void nine()
+{
+   for(i=0;i<2;i++){
+   data(0);
+   clk();
+   }
+   data(1);
+   clk();
+   for(i=0;i<4;i++){
+   data(0);
+   clk();
+   }
+}
+void high()
+{
+   data(1);
+   clk();
+}
+void low()
+{
+   data(0);
+   clk();
+}
+void main()
+{
+
+   while(TRUE)
+   {   
+         for(j=0;j<10;j++)
+         {
+            if (j==0)  {
+                        zero();zero();high();latch();
+                        one();high();zero();latch();
+                        two();high();zero();latch();
+                        three();high();zero();latch();
+                        four();high();zero();latch();
+                        five();high();zero();latch();
+                        six();high();zero();latch();
+                        seven();high();zero();latch();
+                        eight();high();zero();latch();
+                        nine();high();zero();latch();
+                        }
+            if (j==1) {
+                        zero();high();one();latch();
+                        one();high();one();latch();
+                        two();high();one();latch();
+                        three();high();one();latch();
+                        four();high();one();latch();
+                        five();high();one();latch();
+                        six();high();one();latch();
+                        seven();high();one();latch();
+                        eight();high();one();latch();
+                        nine();high();one();latch();
+                        
+                        }
+            if (j==2) {
+                        zero();high();two();latch();
+                        one();high();two();latch();
+                        two();high();two();latch();
+                        three();high();two();latch();
+                        four();high();two();latch();
+                        five();high();two();latch();
+                        six();high();two();latch();
+                        seven();high();two();latch();
+                        eight();high();two();latch();
+                        nine();high();two();latch();
+                        }
+            if (j==3) {
+                        zero();high();three();latch();
+                        one();high();three();latch();
+                        two();high();three();latch();
+                        three();high();three();latch();
+                        four();high();three();latch();
+                        five();high();three();latch();
+                        six();high();three();latch();
+                        seven();high();three();latch();
+                        eight();high();three();latch();
+                        nine();high();three();latch();}
+            if (j==4) {zero();high();four();latch();
+                        one();high();four();latch();
+                        two();high();four();latch();
+                        three();high();four();latch();
+                        four();high();four();latch();
+                        five();high();four();latch();
+                        six();high();four();latch();
+                        seven();high();four();latch();
+                        eight();high();four();latch();
+                        nine();high();four();latch();}
+            if (j==5) {zero();high();five();latch();
+                        one();high();five();latch();
+                        two();high();five();latch();
+                        three();high();five();latch();
+                        four();high();five();latch();
+                        five();high();five();latch();
+                        six();high();five();latch();
+                        seven();high();five();latch();
+                        eight();high();five();latch();
+                        nine();high();five();latch();}
+            if (j==6) {zero();high();six();latch();
+                        one();high();six();latch();
+                        two();high();six();latch();
+                        three();high();six();latch();
+                        four();high();six();latch();
+                        five();high();six();latch();
+                        six();high();six();latch();
+                        seven();high();six();latch();
+                        eight();high();six();latch();
+                        nine();high();six();latch();}
+            if (j==7) {zero();high();seven();latch();
+                        one();high();seven();latch();
+                        two();high();seven();latch();
+                        three();high();seven();latch();
+                        four();high();seven();latch();
+                        five();high();seven();latch();
+                        six();high();seven();latch();
+                        seven();high();seven();latch();
+                        eight();high();seven();latch();
+                        nine();high();seven();latch();}
+            if (j==8) {zero();high();eight();latch();
+                        one();high();eight();latch();
+                        two();high();eight();latch();
+                        three();high();eight();latch();
+                        four();high();eight();latch();
+                        five();high();eight();latch();
+                        six();high();eight();latch();
+                        seven();high();eight();latch();
+                        eight();high();eight();latch();
+                        nine();high();eight();latch();}
+            if (j==9) {zero();high();nine();latch();
+                        one();high();nine();latch();
+                        two();high();nine();latch();
+                        three();high();nine();latch();
+                        four();high();nine();latch();
+                        five();high();nine();latch();
+                        six();high();nine();latch();
+                        seven();high();nine();latch();
+                        eight();high();nine();latch();
+                        nine();high();nine();latch();}
+         }
+         
+
+      //TODO: User Code
+   }
+
+}

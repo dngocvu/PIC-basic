@@ -1,0 +1,51 @@
+[PROJECT]
+Target=main5.hex
+Processor_Text=PIC16F887
+CCSVerions=5.078
+Compiler=PCM
+CCSVersion=5.078
+[Target Data]
+FileList=main5.c
+[Directories]
+Include=
+[E:\bai tap vdk\4_Button\bài5\main5]
+Type=4
+[mru-list]
+1=main5.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=06-11-2018
+D1_L=6
+D1_L1=[35083]Project Opened.
+D1_L2=[35329]Started Editing.
+D1_L3=[35737]Stopped Editing.
+D1_L4=[35737]Started Editing.
+D1_L5=[36262]Stopped Editing.
+TotalEdit=6
+TotalDebug=0
+D1_E=6
+D1_D=0
+D1_L6=[36404]Project Closed.
+D2=08-11-2018
+D2_L=2
+D2_L1=[64688]Project Opened.
+D2_L2=[64704]Project Closed.
+
+[Opened Files]
+1=..\bài4\main4.c
+t1=23
+Count=1
+2=..\bài4\main4.c
+t2=21
+[main5.c]
+Type=4
+
+[defines]
+buildcount=3
+[Units]
+Count=1
+1=main5 (main)

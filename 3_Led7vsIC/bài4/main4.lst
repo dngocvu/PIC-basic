@@ -1,0 +1,212 @@
+CCS PCM C Compiler, Version 5.078, 43599               08-Nov-18 17:28
+
+               Filename:   E:\bai tap vdk\3_Led7vsIC\bài4\main4.lst
+
+               ROM used:   156 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           12 (3%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   05B
+0003:  NOP
+.................... #include <main4.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  00
+0009:  RETLW  01
+000A:  RETLW  02
+000B:  RETLW  03
+000C:  RETLW  04
+000D:  RETLW  05
+000E:  RETLW  06
+000F:  RETLW  07
+0010:  RETLW  08
+0011:  RETLW  09
+0012:  BCF    0A.0
+0013:  BCF    0A.1
+0014:  BCF    0A.2
+0015:  ADDWF  02,F
+0016:  RETLW  00
+0017:  RETLW  10
+0018:  RETLW  20
+0019:  RETLW  30
+001A:  RETLW  40
+001B:  RETLW  50
+001C:  RETLW  60
+001D:  RETLW  70
+001E:  RETLW  80
+001F:  RETLW  90
+0020:  MOVF   23,W
+0021:  XORWF  24,W
+0022:  ANDLW  80
+0023:  MOVWF  26
+0024:  BTFSS  23.7
+0025:  GOTO   028
+0026:  COMF   23,F
+0027:  INCF   23,F
+0028:  BTFSS  24.7
+0029:  GOTO   02C
+002A:  COMF   24,F
+002B:  INCF   24,F
+002C:  MOVF   24,W
+002D:  CLRF   78
+002E:  SUBWF  23,W
+002F:  BTFSC  03.0
+0030:  GOTO   034
+0031:  MOVF   23,W
+0032:  MOVWF  77
+0033:  GOTO   040
+0034:  CLRF   77
+0035:  MOVLW  08
+0036:  MOVWF  25
+0037:  RLF    23,F
+0038:  RLF    77,F
+0039:  MOVF   24,W
+003A:  SUBWF  77,W
+003B:  BTFSC  03.0
+003C:  MOVWF  77
+003D:  RLF    78,F
+003E:  DECFSZ 25,F
+003F:  GOTO   037
+0040:  BTFSS  26.7
+0041:  GOTO   044
+0042:  COMF   78,F
+0043:  INCF   78,F
+0044:  RETURN
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+0045:  MOVLW  22
+0046:  MOVWF  04
+0047:  BCF    03.7
+0048:  MOVF   00,W
+0049:  BTFSC  03.2
+004A:  GOTO   058
+004B:  MOVLW  06
+004C:  MOVWF  78
+004D:  CLRF   77
+004E:  DECFSZ 77,F
+004F:  GOTO   04E
+0050:  DECFSZ 78,F
+0051:  GOTO   04D
+0052:  MOVLW  7B
+0053:  MOVWF  77
+0054:  DECFSZ 77,F
+0055:  GOTO   054
+0056:  DECFSZ 00,F
+0057:  GOTO   04B
+0058:  BCF    0A.3
+0059:  BCF    0A.4
+005A:  GOTO   098 (RETURN)
+....................  
+....................  
+....................  
+.................... signed int8 i; 
+.................... const unsigned int8 ma7doan1[10]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09}; 
+.................... const unsigned int8 ma7doan2[10]={0x00,0x10,0x20,0x30,0x40,0x50,0x60,0x70,0x80,0x90}; 
+.................... void main() 
+005B:  MOVF   03,W
+005C:  ANDLW  1F
+005D:  MOVWF  03
+005E:  MOVLW  FF
+005F:  MOVWF  21
+0060:  BSF    03.5
+0061:  BSF    03.6
+0062:  MOVF   09,W
+0063:  ANDLW  C0
+0064:  MOVWF  09
+0065:  BCF    03.6
+0066:  BCF    1F.4
+0067:  BCF    1F.5
+0068:  MOVLW  00
+0069:  BSF    03.6
+006A:  MOVWF  08
+006B:  BCF    03.5
+006C:  CLRF   07
+006D:  CLRF   08
+006E:  CLRF   09
+006F:  BCF    03.7
+.................... { 
+....................     set_tris_c(0xff); 
+0070:  MOVLW  FF
+0071:  BSF    03.5
+0072:  BCF    03.6
+0073:  MOVWF  07
+0074:  BCF    03.5
+0075:  MOVWF  21
+....................     //delay_ms(500); 
+....................    while(TRUE) 
+....................    { 
+....................    for(i=0;i<100;i++){ 
+0076:  CLRF   20
+0077:  BTFSC  20.7
+0078:  GOTO   07D
+0079:  MOVF   20,W
+007A:  SUBLW  63
+007B:  BTFSS  03.0
+007C:  GOTO   09A
+....................     output_c(ma7doan1[i/10]+ma7doan2[i%10]);//output 2led-1port 
+007D:  MOVF   20,W
+007E:  MOVWF  23
+007F:  MOVLW  0A
+0080:  MOVWF  24
+0081:  CALL   020
+0082:  MOVF   78,W
+0083:  CALL   004
+0084:  MOVWF  22
+0085:  MOVF   20,W
+0086:  MOVWF  23
+0087:  MOVLW  0A
+0088:  MOVWF  24
+0089:  CALL   020
+008A:  MOVF   77,W
+008B:  CALL   012
+008C:  MOVWF  78
+008D:  ADDWF  22,F
+008E:  MOVLW  00
+008F:  MOVWF  21
+0090:  BSF    03.5
+0091:  CLRF   07
+0092:  BCF    03.5
+0093:  MOVF   22,W
+0094:  MOVWF  07
+....................     delay_ms(50); 
+0095:  MOVLW  32
+0096:  MOVWF  22
+0097:  GOTO   045
+0098:  INCF   20,F
+0099:  GOTO   077
+....................     } 
+009A:  GOTO   076
+....................  
+....................  
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+009B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

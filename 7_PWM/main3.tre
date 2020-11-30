@@ -1,0 +1,8 @@
+ÀÄmain3
+   ÀÄMAIN  0/80  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄcheck_S1  0/34  Ram=2
+      ÃÄcheck_S2  0/39  Ram=1
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄ@delay_ms1  0/20  Ram=1
+      ÀÄcheck_S3  0/169  Ram=1

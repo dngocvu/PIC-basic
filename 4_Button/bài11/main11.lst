@@ -1,0 +1,193 @@
+CCS PCM C Compiler, Version 5.078, 43599               07-Nov-18 21:24
+
+               Filename:   E:\bai tap vdk\4_Button\bài11\main11.lst
+
+               ROM used:   117 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #define S1     PIN_D0 
+.................... #define LED1   PIN_D3 
+....................  
+.................... #include <main11.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+....................  
+....................  
+.................... char click=0; 
+.................... int16 i=0; 
+....................     
+.................... void main() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  CLRF   20
+001C:  CLRF   22
+001D:  CLRF   21
+001E:  BSF    03.5
+001F:  BSF    03.6
+0020:  MOVF   09,W
+0021:  ANDLW  C0
+0022:  MOVWF  09
+0023:  BCF    03.6
+0024:  BCF    1F.4
+0025:  BCF    1F.5
+0026:  MOVLW  00
+0027:  BSF    03.6
+0028:  MOVWF  08
+0029:  BCF    03.5
+002A:  CLRF   07
+002B:  CLRF   08
+002C:  CLRF   09
+002D:  BCF    03.7
+.................... {   
+....................    set_tris_d(0b11110111); 
+002E:  MOVLW  F7
+002F:  BSF    03.5
+0030:  BCF    03.6
+0031:  MOVWF  08
+....................    output_bit(LED1,0);      
+0032:  BCF    03.5
+0033:  BCF    08.3
+0034:  BSF    03.5
+0035:  BCF    08.3
+....................    while(TRUE) 
+....................    { 
+....................       if(input(S1)==1) 
+0036:  BSF    08.0
+0037:  BCF    03.5
+0038:  BTFSS  08.0
+0039:  GOTO   062
+....................          { 
+....................             while(input(S1)==1); //firstclick 
+003A:  BSF    03.5
+003B:  BSF    08.0
+003C:  BCF    03.5
+003D:  BTFSC  08.0
+003E:  GOTO   03A
+....................                click=1;       
+003F:  MOVLW  01
+0040:  MOVWF  20
+....................             for(i=0;i<2000;i++)   //time for doubleclick 
+0041:  CLRF   22
+0042:  CLRF   21
+0043:  MOVF   22,W
+0044:  SUBLW  07
+0045:  BTFSS  03.0
+0046:  GOTO   062
+0047:  BTFSS  03.2
+0048:  GOTO   04D
+0049:  MOVF   21,W
+004A:  SUBLW  CF
+004B:  BTFSS  03.0
+004C:  GOTO   062
+....................             { 
+....................                if(input(S1)==1)  //secondclick 
+004D:  BSF    03.5
+004E:  BSF    08.0
+004F:  BCF    03.5
+0050:  BTFSS  08.0
+0051:  GOTO   05E
+....................                    { 
+....................                      while(input(S1)==1); 
+0052:  BSF    03.5
+0053:  BSF    08.0
+0054:  BCF    03.5
+0055:  BTFSC  08.0
+0056:  GOTO   052
+....................                      output_bit(LED1,0);//output2 
+0057:  BCF    08.3
+0058:  BSF    03.5
+0059:  BCF    08.3
+....................                      click=2;  //doubleclick 
+005A:  MOVLW  02
+005B:  BCF    03.5
+005C:  MOVWF  20
+....................                      break; 
+005D:  GOTO   062
+....................                   } 
+005E:  INCF   21,F
+005F:  BTFSC  03.2
+0060:  INCF   22,F
+0061:  GOTO   043
+....................             } 
+....................          } 
+....................       if(click==1) 
+0062:  DECFSZ 20,W
+0063:  GOTO   072
+....................          { 
+....................             output_bit(LED1,1);//output1 
+0064:  BSF    08.3
+0065:  BSF    03.5
+0066:  BCF    08.3
+....................             delay_ms(10); 
+0067:  MOVLW  0A
+0068:  BCF    03.5
+0069:  MOVWF  23
+006A:  CALL   004
+....................             output_bit(LED1,0); 
+006B:  BCF    08.3
+006C:  BSF    03.5
+006D:  BCF    08.3
+....................             delay_ms(10); 
+006E:  MOVLW  0A
+006F:  BCF    03.5
+0070:  MOVWF  23
+0071:  CALL   004
+....................          } 
+0072:  BSF    03.5
+0073:  GOTO   036
+....................           
+....................           
+....................       //TODO: User Code 
+....................    } 
+.................... } 
+0074:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

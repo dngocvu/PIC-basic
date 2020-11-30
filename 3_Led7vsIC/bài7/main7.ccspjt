@@ -1,0 +1,50 @@
+[PROJECT]
+Target=main7.hex
+Processor_Text=PIC16F887
+CCSVerions=5.078
+Compiler=PCM
+CCSVersion=5.078
+[Target Data]
+FileList=main7.c
+[Directories]
+Include=
+[E:\bai tap vdk\3_Led7vsIC\bài7\main7]
+Type=4
+[mru-list]
+1=main7.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=05-11-2018
+D1_L=7
+D1_L1=[79491]Project Opened.
+D1_L2=[81967]Project Opened.
+D1_L3=[82031]Project Closed.
+D1_L4=[82039]Project Opened.
+D1_L5=[82093]Started Editing.
+D1_L6=[82746]Stopped Editing.
+TotalEdit=11
+TotalDebug=0
+D1_E=11
+D1_D=0
+D1_L7=[82746]Project Closed.
+
+[Opened Files]
+1=main7.c
+t1=133
+Count=3
+2=..\bài6\main6.c
+t2=186
+3=..\bài4\main4.c
+t3=1
+[main7.c]
+Type=4
+
+[defines]
+buildcount=6
+[Units]
+Count=1
+1=main7 (main)

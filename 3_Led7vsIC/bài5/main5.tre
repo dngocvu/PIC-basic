@@ -1,0 +1,95 @@
+ÀÄmain5
+   ÀÄMAIN  0/45  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄzero  0/17  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ@delay_ms1  (Inline)  Ram=1
+      ÃÄone  0/28  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄtwo  0/34  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄthree  0/27  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄfour  0/38  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄfive  0/34  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄsix  0/20  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄseven  0/24  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄeight  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÃÄlatch  0/38  Ram=1
+      ³  ÀÄ*
+      ÃÄnine  0/27  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÃÄclk  0/13  Ram=0
+      ³  ÃÄdata  0/18  Ram=1
+      ³  ÀÄclk  0/13  Ram=0
+      ÀÄlatch  0/38  Ram=1
+         ÀÄ*

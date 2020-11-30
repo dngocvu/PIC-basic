@@ -1,0 +1,55 @@
+[PROJECT]
+Target=main9.hex
+Processor_Text=PIC16F887
+CCSVerions=5.078
+Compiler=PCM
+CCSVersion=5.078
+[Target Data]
+FileList=main9.c
+[Directories]
+Include=
+[E:\bai tap vdk\led7\bài9\main9]
+Type=4
+[mru-list]
+1=main9.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=04-11-2018
+D1_L=4
+D1_L1=[72454]Project Opened.
+D1_L2=[72493]Started Editing.
+D1_L3=[72963]Stopped Editing.
+TotalEdit=5
+TotalDebug=0
+D1_E=3
+D1_D=0
+D1_L4=[73083]Project Closed.
+D2=08-11-2018
+D2_L=4
+D2_L1=[60969]Project Opened.
+D2_L2=[60973]Started Editing.
+D2_L3=[61077]Stopped Editing.
+D2_E=2
+D2_D=0
+D2_L4=[61077]Project Closed.
+
+[Opened Files]
+1=..\bài10\main10.c
+t1=18
+2=..\bài10\main10.c
+t2=1
+3=..\bài8\main8.c
+t3=1
+Count=1
+[main9.c]
+Type=4
+
+[defines]
+buildcount=3
+[Units]
+Count=1
+1=main9 (main)

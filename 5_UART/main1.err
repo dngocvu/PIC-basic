@@ -1,0 +1,5 @@
+Compiling E:\bai tap vdk\5_UART\main1 on 16-Dec-18 at 20:30
+>>> Warning 229 "main1.c" Line 28(1,1): Subscript out of range
+      Memory usage:   ROM=6%      RAM=9% - 10%
+      0 Errors,  1 Warnings.
+Build Successful.

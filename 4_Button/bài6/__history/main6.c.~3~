@@ -1,0 +1,50 @@
+#define S1    PIN_D0
+#define S2    PIN_D1
+#define LED1  PIN_D3
+
+#include <main6.h>
+
+char S1_state=0;
+char LED1_state=0;
+int16  delaycntON=0;
+int16  delaycntOFF=0;
+
+void main()
+{
+   set_tris_d(0b11110111);
+   output_bit(LED1,0);
+   while(TRUE)   
+      {
+         if ((S1_state==0)&(input(S1)==1)) 
+            S1_state=1;
+         if ((S1_state==1)&(input(S1)==0)) 
+            S1_state=2;
+         if ((S1_state==2)&(input(S1)==1))
+            S1_state=3;
+         if ((S1_state==3)&(input(S1)==0)) 
+            S1_state=0;
+     //process
+         if (S1_state==0) 
+            LED1_state=0;
+         if (S1_state==1) 
+            LED1_state=1;
+         if (S1_state==2) 
+            LED1_state=1;
+         if (S1_state==3) 
+            LED1_state=1;
+    // Output
+         if (LED1_state==0) 
+            output_bit(LED1,0);
+         if (LED1_state==1) 
+            {  
+               output_bit(LED1,1);
+               delay_ms(100);
+               output_bit(LED1,0);
+               delay_ms(100);
+            }
+       
+       
+      } // End of Loop while (true)
+
+ } // End of main
+

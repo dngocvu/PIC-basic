@@ -1,0 +1,159 @@
+CCS PCM C Compiler, Version 5.078, 43599               04-Nov-18 16:25
+
+               Filename:   E:\bai tap vdk\led7\bài6\main6.lst
+
+               ROM used:   102 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   028
+0003:  NOP
+.................... #include <main6.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  80
+0009:  RETLW  F2
+000A:  RETLW  48
+000B:  RETLW  60
+000C:  RETLW  32
+000D:  RETLW  24
+000E:  RETLW  04
+000F:  RETLW  F0
+0010:  RETLW  00
+0011:  RETLW  20
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+0012:  MOVLW  23
+0013:  MOVWF  04
+0014:  BCF    03.7
+0015:  MOVF   00,W
+0016:  BTFSC  03.2
+0017:  GOTO   025
+0018:  MOVLW  06
+0019:  MOVWF  78
+001A:  CLRF   77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  DECFSZ 78,F
+001E:  GOTO   01A
+001F:  MOVLW  7B
+0020:  MOVWF  77
+0021:  DECFSZ 77,F
+0022:  GOTO   021
+0023:  DECFSZ 00,F
+0024:  GOTO   018
+0025:  BCF    0A.3
+0026:  BCF    0A.4
+0027:  GOTO   062 (RETURN)
+....................  
+....................  
+.................... const unsigned int8 ma7doan[10] = {0x180,0x1f2,0x148,0x160,0x132,0x124,0x104,0x1f0,0x100,0x120}; 
+.................... signed int dem; 
+.................... unsigned int ma_dem; 
+.................... void main() 
+0028:  MOVF   03,W
+0029:  ANDLW  1F
+002A:  MOVWF  03
+002B:  MOVLW  FF
+002C:  MOVWF  22
+002D:  BSF    03.5
+002E:  BSF    03.6
+002F:  MOVF   09,W
+0030:  ANDLW  C0
+0031:  MOVWF  09
+0032:  BCF    03.6
+0033:  BCF    1F.4
+0034:  BCF    1F.5
+0035:  MOVLW  00
+0036:  BSF    03.6
+0037:  MOVWF  08
+0038:  BCF    03.5
+0039:  CLRF   07
+003A:  CLRF   08
+003B:  CLRF   09
+003C:  BCF    03.7
+.................... { 
+....................    set_tris_c(0x00); 
+003D:  MOVLW  00
+003E:  BSF    03.5
+003F:  BCF    03.6
+0040:  MOVWF  07
+0041:  BCF    03.5
+0042:  MOVWF  22
+....................    set_tris_d(0x00); // input port d 
+0043:  BSF    03.5
+0044:  MOVWF  08
+....................    while(TRUE) 
+....................    { 
+....................       for(dem=0;dem<10;dem++) 
+0045:  BCF    03.5
+0046:  CLRF   20
+0047:  BTFSC  20.7
+0048:  GOTO   04D
+0049:  MOVF   20,W
+004A:  SUBLW  09
+004B:  BTFSS  03.0
+004C:  GOTO   064
+....................          { 
+....................             //ma_dem = ma7doan[dem];   
+....................             output_c(ma7doan[dem]); 
+004D:  MOVF   20,W
+004E:  CALL   004
+004F:  MOVWF  23
+0050:  MOVLW  00
+0051:  MOVWF  22
+0052:  BSF    03.5
+0053:  CLRF   07
+0054:  BCF    03.5
+0055:  MOVF   23,W
+0056:  MOVWF  07
+....................             output_d(ma7doan[dem]); 
+0057:  MOVF   20,W
+0058:  CALL   004
+0059:  MOVWF  23
+005A:  BSF    03.5
+005B:  CLRF   08
+005C:  BCF    03.5
+005D:  MOVF   23,W
+005E:  MOVWF  08
+....................             delay_ms(50); 
+005F:  MOVLW  32
+0060:  MOVWF  23
+0061:  GOTO   012
+0062:  INCF   20,F
+0063:  GOTO   047
+....................          } 
+0064:  GOTO   046
+....................  
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+0065:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

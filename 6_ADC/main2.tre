@@ -1,0 +1,14 @@
+읕main2
+   읕MAIN  0/160  Ram=2
+      쳐@cinit1  (Inline)  Ram=0
+      쳐@delay_ms2  0/22  Ram=1
+      쳐@PSTRINGCN7_9600_62_63  0/91  Ram=5
+      쳐@PRINTF_LD_9600_62_63  0/120  Ram=9
+      쳐@MUL1616  0/23  Ram=5
+      쳐@DIV1616  0/37  Ram=5
+      읕Display_LED_TIME  0/57  Ram=3
+         쳐@DIV1616  0/37  Ram=5
+         쳐@const645  0/14  Ram=0
+         쳐@DIV1616  0/37  Ram=5
+         쳐@DIV1616  0/37  Ram=5
+         읕@const645  0/14  Ram=0

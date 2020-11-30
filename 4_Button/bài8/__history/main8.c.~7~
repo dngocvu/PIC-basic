@@ -1,0 +1,78 @@
+#define S1    PIN_D0
+#define LED1  PIN_D3
+#define LED2  PIN_D4
+#define LED3  PIN_D5
+
+#include <main8.h>
+
+char phase=0;
+char output_state=0;
+int16  delaycntON=0;
+int16  delaycntOFF=0;
+
+void main()
+
+{
+   set_tris_d(0b11000111);
+   output_bit(LED1,0);
+   while(TRUE)   
+   {
+      // input + process
+      if ((phase==0)&(input(S1)==1)) phase=1;
+      if ((phase==1)&(input(S1)==0)) phase=2;
+      if ((phase==2)&(input(S1)==1)) phase=3;
+      if ((phase==3)&(input(S1)==0)) phase=4;
+      if ((phase==4)&(input(S1)==1)) phase=5;
+      if ((phase==5)&(input(S1)==0)) phase=6;
+      if ((phase==6)&(input(S1)==1)) phase=7;
+      if ((phase==7)&(input(S1)==0)) phase=0;
+      
+      // Control
+      if (phase==0) output_state=0;
+      if (phase==1) output_state=0;
+      if (phase==2) output_state=1;
+      if (phase==3) output_state=1;
+      if (phase==4) output_state=2;
+      if (phase==5) output_state=2;
+      if (phase==6) output_state=3;
+      if (phase==7) output_state=3;
+    
+   // Output
+   if (output_state==0) 
+      {
+         output_bit(LED1,0);
+         output_bit(LED2,0);
+         output_bit(LED3,0);
+      }
+   if (output_state==1) 
+      {
+         output_bit(LED1,1);
+         delay_ms(100);
+         output_bit(LED1,0);
+         delay_ms(100);
+         output_bit(LED2,0);
+         output_bit(LED3,0);
+      } 
+   if (output_state==2) 
+      {
+         output_bit(LED1,0);
+         output_bit(LED2,1);
+         delay_ms(100);
+         output_bit(LED2,0);
+         delay_ms(100);
+         output_bit(LED3,0);
+      }
+   if (output_state==3) 
+      {
+         output_bit(LED1,0);
+         output_bit(LED2,0);
+         output_bit(LED3,1);
+         delay_ms(100);
+         output_bit(LED3,0);
+         delay_ms(100);
+      }
+       
+       
+    } // End of Loop while (true)
+
+} // End of main

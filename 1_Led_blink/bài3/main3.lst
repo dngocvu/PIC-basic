@@ -1,0 +1,235 @@
+CCS PCM C Compiler, Version 5.078, 43599               05-Nov-18 09:44
+
+               Filename:   E:\bai tap vdk\button\bài3\main3.lst
+
+               ROM used:   169 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <main3.h> 
+.................... #include <16F887.h> 
+.................... //////////// Standard Header file for the PIC16F887 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F887 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+....................  
+....................  
+.................... void main() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  MOVLW  FF
+001C:  MOVWF  20
+001D:  BSF    03.5
+001E:  BSF    03.6
+001F:  MOVF   09,W
+0020:  ANDLW  C0
+0021:  MOVWF  09
+0022:  BCF    03.6
+0023:  BCF    1F.4
+0024:  BCF    1F.5
+0025:  MOVLW  00
+0026:  BSF    03.6
+0027:  MOVWF  08
+0028:  BCF    03.5
+0029:  CLRF   07
+002A:  CLRF   08
+002B:  CLRF   09
+002C:  BCF    03.7
+.................... { 
+....................   set_tris_c(0x00); 
+002D:  MOVLW  00
+002E:  BSF    03.5
+002F:  BCF    03.6
+0030:  MOVWF  07
+0031:  BCF    03.5
+0032:  MOVWF  20
+....................   output_c(0x00); 
+0033:  MOVWF  20
+0034:  BSF    03.5
+0035:  CLRF   07
+0036:  BCF    03.5
+0037:  CLRF   07
+....................    while(TRUE) 
+....................    { 
+....................    output_c(0x01);  
+0038:  MOVLW  00
+0039:  MOVWF  20
+003A:  BSF    03.5
+003B:  CLRF   07
+003C:  MOVLW  01
+003D:  BCF    03.5
+003E:  MOVWF  07
+....................    delay_ms(300); 
+003F:  MOVLW  02
+0040:  MOVWF  21
+0041:  MOVLW  96
+0042:  MOVWF  22
+0043:  CALL   004
+0044:  DECFSZ 21,F
+0045:  GOTO   041
+....................    output_c(0x02);  
+0046:  MOVLW  00
+0047:  MOVWF  20
+0048:  BSF    03.5
+0049:  CLRF   07
+004A:  MOVLW  02
+004B:  BCF    03.5
+004C:  MOVWF  07
+....................    delay_ms(300); 
+004D:  MOVWF  21
+004E:  MOVLW  96
+004F:  MOVWF  22
+0050:  CALL   004
+0051:  DECFSZ 21,F
+0052:  GOTO   04E
+....................    output_c(0x04);  
+0053:  MOVLW  00
+0054:  MOVWF  20
+0055:  BSF    03.5
+0056:  CLRF   07
+0057:  MOVLW  04
+0058:  BCF    03.5
+0059:  MOVWF  07
+....................    delay_ms(300); 
+005A:  MOVLW  02
+005B:  MOVWF  21
+005C:  MOVLW  96
+005D:  MOVWF  22
+005E:  CALL   004
+005F:  DECFSZ 21,F
+0060:  GOTO   05C
+....................    output_c(0x08);  
+0061:  MOVLW  00
+0062:  MOVWF  20
+0063:  BSF    03.5
+0064:  CLRF   07
+0065:  MOVLW  08
+0066:  BCF    03.5
+0067:  MOVWF  07
+....................    delay_ms(300); 
+0068:  MOVLW  02
+0069:  MOVWF  21
+006A:  MOVLW  96
+006B:  MOVWF  22
+006C:  CALL   004
+006D:  DECFSZ 21,F
+006E:  GOTO   06A
+....................    output_c(0x10);  
+006F:  MOVLW  00
+0070:  MOVWF  20
+0071:  BSF    03.5
+0072:  CLRF   07
+0073:  MOVLW  10
+0074:  BCF    03.5
+0075:  MOVWF  07
+....................    delay_ms(300); 
+0076:  MOVLW  02
+0077:  MOVWF  21
+0078:  MOVLW  96
+0079:  MOVWF  22
+007A:  CALL   004
+007B:  DECFSZ 21,F
+007C:  GOTO   078
+....................    output_c(0x20);  
+007D:  MOVLW  00
+007E:  MOVWF  20
+007F:  BSF    03.5
+0080:  CLRF   07
+0081:  MOVLW  20
+0082:  BCF    03.5
+0083:  MOVWF  07
+....................    delay_ms(300); 
+0084:  MOVLW  02
+0085:  MOVWF  21
+0086:  MOVLW  96
+0087:  MOVWF  22
+0088:  CALL   004
+0089:  DECFSZ 21,F
+008A:  GOTO   086
+....................    output_c(0x40);  
+008B:  MOVLW  00
+008C:  MOVWF  20
+008D:  BSF    03.5
+008E:  CLRF   07
+008F:  MOVLW  40
+0090:  BCF    03.5
+0091:  MOVWF  07
+....................    delay_ms(300); 
+0092:  MOVLW  02
+0093:  MOVWF  21
+0094:  MOVLW  96
+0095:  MOVWF  22
+0096:  CALL   004
+0097:  DECFSZ 21,F
+0098:  GOTO   094
+....................    output_c(0x80);  
+0099:  MOVLW  00
+009A:  MOVWF  20
+009B:  BSF    03.5
+009C:  CLRF   07
+009D:  MOVLW  80
+009E:  BCF    03.5
+009F:  MOVWF  07
+....................    delay_ms(300); 
+00A0:  MOVLW  02
+00A1:  MOVWF  21
+00A2:  MOVLW  96
+00A3:  MOVWF  22
+00A4:  CALL   004
+00A5:  DECFSZ 21,F
+00A6:  GOTO   0A2
+00A7:  GOTO   038
+....................     
+....................     
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+....................  
+00A8:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT

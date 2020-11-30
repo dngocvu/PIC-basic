@@ -1,0 +1,30 @@
+#include <main10.h>
+
+const unsigned int8 led7doan4c[10]={0x0F,0x06,0x0B,0x0F,0x06,0x0D,0x0D,0x07,0x0F,0x0F};
+const unsigned int8 led7doan4d3e[10]={0x03,0x00,0x05,0x04,0x06,0x06,0x07,0x00,0x07,0x06};
+const unsigned int8 led7doan3d[10]={0xF0,0x60,0xB0,0xF0,0x60,0xD0,0xD0,0x70,0xF0,0xF0};
+
+void main()
+{
+   set_tris_c(0x00);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   int8 i=0,j=0;
+   while(TRUE)
+   {
+      output_d(led7doan3d[i] + led7doan4d3e[j);
+      output_c(led7doan4c[j]);
+      output_e(led7doan4d3e[i]);
+      i++;
+      if(i==10) {
+         i=0;
+         j++;
+      }
+      if(j==10) j=0;
+      delay_ms(30);
+
+
+      //TODO: User Code
+   }
+
+}

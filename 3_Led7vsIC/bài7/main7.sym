@@ -1,0 +1,79 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     i
+021     @TRIS_C
+022     data.d
+022     latch.@SCRATCH1
+023     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  data
+000016  clk
+000023  nine
+00003C  high
+000041  zero
+000050  latch
+000060  @delay_ms1
+000076  eight
+000081  one
+00009B  seven
+0000B1  two
+0000D1  six
+0000E3  three
+0000FC  five
+00011C  four
+000140  MAIN
+000140  @cinit1
+000155  @cinit2
+
+Project Directory:
+    E:\bai tap vdk\3_Led7vsIC\bài7\
+
+Project Files:
+    main7.c                                                 [05-Nov-18 22:57  CRC=4CEEB64A]
+    main7.h                                                 [05-Nov-18 22:04  CRC=00000000]
+    C:\Program Files (x86)\PICC\Devices\16F887.h            [02-Apr-18 08:19  CRC=9C71CB72]
+
+Source signature=85D24D2E
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=2FF7
+
+Units:
+    main7 (main)
+
+Compiler Settings:
+    Processor:      PIC16F887
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main7.xsym
+    Errors:      main7.err
+    Ext Symbols: main7.esym
+    INHX8:       main7.hex
+    Symbols:     main7.sym
+    List:        main7.lst
+    Debug/COFF:  main7.cof
+    Project:     main7.ccspjt
+    Call Tree:   main7.tre
+    Statistics:  main7.STA

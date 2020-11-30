@@ -1,0 +1,103 @@
+[PROJECT]
+Target=main3.hex
+Processor_Text=PIC16F887
+CCSVerions=5.078
+Compiler=PCM
+CCSVersion=5.078
+[Target Data]
+FileList=main3.c
+[Directories]
+Include=
+[E:\bai tap vdk\led7\bài3\main3]
+Type=4
+[mru-list]
+1=main3.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=7
+D1=03-11-2018
+D1_L=2
+D1_L1=[86228]Project Opened.
+D1_L2=[86232]Started Editing.
+D2=04-11-2018
+D2_L=2
+D2_L1=[282]Stopped Editing.
+TotalEdit=210
+TotalDebug=0
+D2_E=8
+D2_D=0
+D2_L2=[282]Project Closed.
+D3=04-12-2018
+D3_L=2
+D3_L1=[74336]Project Opened.
+D3_L2=[74337]Project Closed.
+D4=12-12-2018
+D4_L=4
+D4_L1=[84511]Project Opened.
+D4_L2=[84711]Started Editing.
+D4_L3=[86239]Stopped Editing.
+D4_E=21
+D4_D=0
+D4_L4=[86309]Project Closed.
+D5=13-12-2018
+D5_L=18
+D5_L1=[49253]Project Opened.
+D5_L2=[49561]Started Editing.
+D5_L3=[49982]Stopped Editing.
+D5_L4=[50277]Started Editing.
+D5_L5=[50578]Stopped Editing.
+D5_L6=[50583]Started Editing.
+D5_L7=[51801]Stopped Editing.
+D5_L8=[55597]Started Editing.
+D5_L9=[58446]Stopped Editing.
+D5_L10=[59472]Started Editing.
+D5_L11=[60852]Stopped Editing.
+D5_L12=[60966]Started Editing.
+D5_L13=[63774]Stopped Editing.
+D5_L14=[64096]Started Editing.
+D5_L15=[66991]Stopped Editing.
+D5_L16=[67314]Started Editing.
+D5_L17=[67895]Stopped Editing.
+D5_E=173
+D5_D=0
+D5_L18=[67895]Project Closed.
+D6=16-12-2018
+D6_L=12
+D6_L1=[77529]Project Opened.
+D6_L2=[77536]Project Closed.
+D6_L3=[77551]Project Opened.
+D6_L4=[77555]Project Closed.
+D6_L5=[81966]Project Opened.
+D6_L6=[81967]Project Closed.
+D6_L7=[82423]Project Opened.
+D6_L8=[82430]Started Editing.
+D6_L9=[83205]Stopped Editing.
+D6_E=8
+D6_D=0
+D6_L10=[83603]Project Closed.
+D6_L11=[84683]Project Opened.
+D6_L12=[84699]Project Closed.
+D7=20-12-2018
+D7_L=2
+D7_L1=[67019]Project Opened.
+D7_L2=[67078]Project Closed.
+
+[Opened Files]
+1=main3.c
+t1=33
+Count=1
+2=C:\Users\ngoc vu\AppData\Local\Temp\Rar$DIa0.153\MAIN.C
+t2=117
+3=C:\Users\ngoc vu\AppData\Local\Temp\Rar$DIa0.153\MAIN.C
+t3=77
+[main3.c]
+Type=4
+
+[defines]
+buildcount=53
+[Units]
+Count=1
+1=main3 (main)
